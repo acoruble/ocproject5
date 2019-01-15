@@ -31,15 +31,13 @@ class frontend
     }
     else {
       $user = new User();
-      var_dump($user);
-      var_dump($_POST);
       $correct = $user->checkEmail($_POST['email']);
       if (!$correct) {
         $user->create(htmlspecialchars($_POST['name']), ($_POST['surname']), ($_POST['password']), ($_POST['email']));
         header('Location: index.php');
       }
       else {
-        echo "<div class='alert alert-danger' role='alert'>Cet e-mail est déjà utilisée.</div>";
+        echo "<div class='alert alert-danger' role='alert'>Cet e-mail est déjà utilisé.</div>";
         require ('view/frontend/account/registration.php');
       }
     }

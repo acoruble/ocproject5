@@ -18,7 +18,7 @@
         <form method="post" action="index.php?admin=new_way_post" class="text-left">
           <div class="form-group"> <label for="form16">Conducteur</label> <input name="driver" type="text" class="form-control" id="form16" value="<?= $fullname->name() ?> <?= $fullname->surname() ?>" disabled=""></div>
           <div class="form-group">
-            <label for="form17">Point de départ</label> <input name="starting_point" type="text" class="form-control" id="user_input_autocomplete_address" placeholder="Votre adresse de départ..." required="required">
+            <label for="form17">Point de départ</label> <input name="starting_point" type="text" class="form-control" id="user_input_autocomplete_address" value="<?= $way_update->starting_point() ?>" placeholder="Votre adresse de départ..." required="required">
             <div>
               <div class="d-none">
                 <label>Numéro</label>
@@ -39,7 +39,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="form17">Point d'arrivée</label> <input name="destination" type="text" class="form-control" id="user_input_autocomplete_address_2" placeholder="Votre adresse d'arrivée..." required="required">
+            <label for="form17">Point d'arrivée</label> <input name="destination" type="text" class="form-control" id="user_input_autocomplete_address_2" value="<?= $way_update->destination() ?>" placeholder="Votre adresse d'arrivée..." required="required">
             <div>
               <div class="d-none">
                 <label>Numéro</label>
