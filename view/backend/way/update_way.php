@@ -5,20 +5,22 @@
   <div class="container">
     <div class="row">
       <div class="d-flex flex-column justify-content-center col-md-12 shadow p-3">
-        <h3 class="display-4 mb-3 text-center">Bonjour M/Mme,&nbsp;bienvenue dans votre espace de modifications des trajets.</h3>
+        <h3 class="display-4 mb-3 text-center">Bonjour <?= $_SESSION['nom'] ?>, bienvenue dans votre espace de modifications des trajets.</h3>
       </div>
     </div>
   </div>
 </div>
-<div class="py-5 text-center" >
+<div class="py-2 text-center" >
   <div class="container">
     <div class="row shadow">
-      <div class="mx-auto col-lg-6 col-10">
+      <div class="mx-auto col-lg-6 col-10 py-2">
         <h1>Trajet du 14/01/2019</h1>
-        <form method="post" action="index.php?admin=new_way_post" class="text-left">
-          <div class="form-group"> <label for="form16">Conducteur</label> <input name="driver" type="text" class="form-control" id="form16" value="<?= $fullname->name() ?> <?= $fullname->surname() ?>" disabled=""></div>
+        <form method="post" action="index.php?admin=update_way_post&id=<?= $way->id() ?>" class="text-left">
+          <div class="form-group"> <label for="form16">Conducteur</label> <input name="driver" type="text" class="form-control" id="form16" value="<?= $driver->name() ?> <?= $driver->surname() ?>" disabled=""></div>
           <div class="form-group">
-            <label for="form17">Point de départ</label> <input name="starting_point" type="text" class="form-control" id="user_input_autocomplete_address" value="<?= $way_update->starting_point() ?>" placeholder="Votre adresse de départ..." required="required">
+            <input name="ID_driver" type="hidden" class="form-control" id="form16" value="<?= $way->driver() ?>" disabled=""></div>
+          <div class="form-group">
+            <label for="form17">Point de départ</label> <input name="starting_point" type="text" class="form-control" id="user_input_autocomplete_address" value="<?= $way->starting_point() ?>" placeholder="Votre adresse de départ..." required="required">
             <div>
               <div class="d-none">
                 <label>Numéro</label>
@@ -39,7 +41,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="form17">Point d'arrivée</label> <input name="destination" type="text" class="form-control" id="user_input_autocomplete_address_2" value="<?= $way_update->destination() ?>" placeholder="Votre adresse d'arrivée..." required="required">
+            <label for="form17">Point d'arrivée</label> <input name="destination" type="text" class="form-control" id="user_input_autocomplete_address_2" value="<?= $way->destination() ?>" placeholder="Votre adresse d'arrivée..." required="required">
             <div>
               <div class="d-none">
                 <label>Numéro</label>
@@ -59,13 +61,13 @@
               </div>
             </div>
           </div>
-          <div class="form-group"> <label for="form18">Véhicule<br></label> <input name="car" type="text" class="form-control" id="form18" required="required"> </div>
+          <div class="form-group"> <label for="form18">Véhicule<br></label> <input name="car" type="text" class="form-control" id="form18" value="<?= $way->car() ?>" required="required"> </div>
           <div class="form-row">
-            <div class="form-group col-md-12"> <label for="form19">Date</label> <input name="date" type="date" class="form-control" id="form19" required="required"> </div>
+            <div class="form-group col-md-12"> <label for="form19">Date</label> <input name="date" type="date" class="form-control" id="form19" value="<?= $way->date_way() ?>" required="required"> </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-6"> <label for="form19">Heure de départ</label> <input name="time_start" type="time" class="form-control" id="form19" required="required"> </div>
-            <div class="form-group col-md-6"> <label for="form19">Heure d'arrivée prévue</label> <input name="time_arrival" type="time" class="form-control" id="form19" required="required"> </div>
+            <div class="form-group col-md-6"> <label for="form19">Heure de départ</label> <input name="time_start" type="time" class="form-control" id="form19" value="<?= $way->time_start() ?>" required="required"> </div>
+            <div class="form-group col-md-6"> <label for="form19">Heure d'arrivée prévue</label> <input name="time_arrival" type="time" class="form-control" id="form19" value="<?= $way->time_arrival() ?>" required="required"> </div>
           </div>
           <button type="submit" class="btn btn-secondary w-100">Enregistrer vos modifications</button>
         </form>

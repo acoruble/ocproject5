@@ -13,53 +13,29 @@
     </div>
   </div>
 </div>
-<div class="py-5">
+<div class="py-3">
   <div class="container">
+
     <div class="row">
       <div class="col-md-12">
+        <?php foreach($ways as $way)
+        { ?>
         <div class="row">
           <div class="col-md-8 border-bottom border-dark p-3">
             <ul class="list-group" style="">
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-map-marker text-muted fa-lg"></i> Lieu de départ</li>
-              <li class=" border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-long-arrow-down text-muted fa-lg"></i>Durée prévue</li>
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-map-marker text-muted fa-lg"></i> Lieu d'arrivée</li>
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center" draggable="true"><i class="fa fa-calendar text-muted fa-lg"></i>Date et heure</li>
+              <li class="border-0 list-group-item d-flex center-content-between align-items-top"><i class="fa fa-map-marker text-muted fa-lg"></i>Départ : <?= $way->starting_point() ?></li>
+              <li class="border-0 list-group-item d-flex center-content-between align-items-top"><i class="fa fa-map-marker text-muted fa-lg"></i>Arrivée : <?= $way->destination() ?></li>
+              <li class="border-0 list-group-item d-flex center-content-between align-items-top"><i class="fa fa-calendar text-muted fa-lg"></i>Heure de départ : <?= $way->time_start() ?></li>
+              <li class="border-0 list-group-item d-flex center-content-between align-items-top"><i class="fa fa-calendar text-muted fa-lg"></i>Heure d'arrivée :<?= $way->time_arrival() ?></li>
             </ul>
           </div>
-          <div class="col-md-4 border-bottom border-dark p-3" style=""><a class="btn btn-secondary text-center w-100 my-5" href="#">Réserver ce trajet</a></div>
+          <div class="col-md-4 border-bottom border-dark p-3" style=""><a class="btn btn-secondary text-center w-100 my-5" href="index.php?admin=read_way&id=<?= $way->id() ?>">En savoir plus</a></div>
         </div>
+        <?php
+      } ?>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-8 border-bottom border-dark p-3">
-            <ul class="list-group" style="">
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-map-marker text-muted fa-lg"></i> Lieu de départ</li>
-              <li class=" border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-long-arrow-down text-muted fa-lg"></i>Durée prévue</li>
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-map-marker text-muted fa-lg"></i> Lieu d'arrivée</li>
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center" draggable="true"><i class="fa fa-calendar text-muted fa-lg"></i>Date et heure</li>
-            </ul>
-          </div>
-          <div class="col-md-4 border-bottom border-dark p-3" style=""><a class="btn btn-secondary text-center w-100 my-5" href="#">Réserver ce trajet</a></div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-8 border-bottom border-dark p-3">
-            <ul class="list-group" style="">
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-map-marker text-muted fa-lg"></i> Lieu de départ</li>
-              <li class=" border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-long-arrow-down text-muted fa-lg"></i>Durée prévue</li>
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center"><i class="fa fa-map-marker text-muted fa-lg"></i> Lieu d'arrivée</li>
-              <li class="border-0 list-group-item d-flex justify-content-between align-items-center" draggable="true"><i class="fa fa-calendar text-muted fa-lg"></i>Date et heure</li>
-            </ul>
-          </div>
-          <div class="col-md-4 border-bottom border-dark p-3" style=""><a class="btn btn-secondary text-center w-100 my-5" href="#">Réserver ce trajet</a></div>
-        </div>
-      </div>
-    </div>
+
   </div>
 </div>
 

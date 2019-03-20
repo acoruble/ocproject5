@@ -4,14 +4,21 @@ class Way extends WayManager
 {
 
   protected $id,
-            $driver,
-            $starting_point,
-            $destination,
-            $passenger,
-            $car,
-            $date_way,
-            $time_start,
-            $time_arrival;
+  $status,
+  $driver,
+  $starting_point,
+  $destination,
+  $passenger,
+  $car,
+  $date_way,
+  $time_start,
+  $time_arrival,
+  $passenger_1,
+  $passenger_2,
+  $passenger_3,
+  $passenger_4,
+  $passenger_5,
+  $passenger_6;
 
 
   public function __construct(array $data = null)
@@ -38,6 +45,11 @@ class Way extends WayManager
     $this->id = (int) $id;
   }
 
+  public function setStatus($status)
+  {
+    $this->status = $status;
+  }
+
   public function setDriver($driver)
   {
     $this->driver = $driver;
@@ -55,7 +67,7 @@ class Way extends WayManager
 
   public function setPassenger($passenger)
   {
-      $this->passenger = $passenger;
+    $this->passenger = $passenger;
   }
 
   public function setCar($car)
@@ -78,9 +90,44 @@ class Way extends WayManager
     $this->time_arrival = $time_arrival;
   }
 
+  public function setPassenger_1($passenger_1)
+  {
+    $this->passenger_1 = $passenger_1;
+  }
+
+  public function setPassenger_2($passenger_2)
+  {
+    $this->passenger_2 = $passenger_2;
+  }
+
+  public function setPassenger_3($passenger_3)
+  {
+    $this->passenger_3 = $passenger_3;
+  }
+
+  public function setPassenger_4($passenger_4)
+  {
+    $this->passenger_4 = $passenger_4;
+  }
+
+  public function setPassenger_5($passenger_5)
+  {
+    $this->passenger_5 = $passenger_5;
+  }
+
+  public function setPassenger_6($passenger_6)
+  {
+    $this->passenger_6 = $passenger_6;
+  }
+
   public function id()
   {
     return $this->id;
+  }
+
+  public function status()
+  {
+    return $this->status;
   }
 
   public function driver()
@@ -121,6 +168,36 @@ class Way extends WayManager
   public function time_arrival()
   {
     return $this->time_arrival;
+  }
+
+  public function passenger_1()
+  {
+    return $this->passenger_1;
+  }
+
+  public function passenger_2()
+  {
+    return $this->passenger_2;
+  }
+
+  public function passenger_3()
+  {
+    return $this->passenger_3;
+  }
+
+  public function passenger_4()
+  {
+    return $this->passenger_4;
+  }
+
+  public function passenger_5()
+  {
+    return $this->passenger_5;
+  }
+
+  public function passenger_6()
+  {
+    return $this->passenger_6;
   }
 
 }

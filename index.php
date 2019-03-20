@@ -73,9 +73,22 @@ elseif (isset($_GET['admin'])) {
     elseif ($_GET['admin'] === 'management_way') {
       $backend->management_way();
     }
+    elseif ($_GET['admin'] === 'read_way') {
+      $backend->read_way();
+    }
     elseif ($_GET['admin'] === 'update_way') {
       $backend->update_way();
     }
+    elseif ($_GET['admin'] === 'update_way_post') {
+      $backend->update_way_post();
+    }
+    elseif ($_GET['admin'] === 'delete_way') {
+      $backend->delete_way();
+    }
+    elseif ($_GET['admin'] === 'booking') {
+      $backend->booking();
+    }
+
     elseif ($_GET['admin'] === 'review_driver') {
       $backend->review_driver();
     }
@@ -84,6 +97,9 @@ elseif (isset($_GET['admin'])) {
     }
     elseif ($_GET['admin'] === 'account_management') {
       $backend->account_management();
+    }
+    elseif ($_GET['admin'] === 'update_account') {
+      $backend->update_account();
     }
     elseif ($_GET['admin'] === 'my_account') {
       $backend->my_account();

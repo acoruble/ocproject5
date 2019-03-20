@@ -9,7 +9,7 @@
         <h3 class="mb-3 text-body">Rechercher un trajet</h3>
         <form action="index.php?admin=results" method="post">
           <div class="form-group">
-            <label class="text-body">Lieu de départ</label> <input id="user_input_autocomplete_address" placeholder="Votre adresse de départ..." class="form-control" type="text" required="required">
+            <label class="text-body">Lieu de départ</label> <input name="starting_point" id="user_input_autocomplete_address" placeholder="Votre adresse de départ..." class="form-control" type="text" required="required">
             <div class="d-none">
               <label>Numéro</label>
               <input id="street_number" name="street_number" disabled>
@@ -30,7 +30,7 @@
               <input id="locality" name="locality" disabled>
             </div>
           </div>
-          <div class="form-group"> <label>Lieu d'arrivée</label> <input id="user_input_autocomplete_address_2" placeholder="Votre adresse d'arrivée..."  type="text" class="form-control" required="required" >
+          <div class="form-group"> <label>Lieu d'arrivée</label> <input name="destination" id="user_input_autocomplete_address_2" placeholder="Votre adresse d'arrivée..."  type="text" class="form-control" required="required" >
             <div class="d-none">
               <label>Numéro</label>
               <input id="street_number" name="street_number" disabled>
@@ -51,7 +51,8 @@
               <input id="locality" name="locality" disabled>
             </div>
           </div>
-          <div class="form-group"> <label>Date de départ</label> <input type="date" class="form-control" placeholder="2" required="required"> </div> <button type="submit" class="btn mt-4 btn-block p-2 btn-outline-secondary"><b>Rechercher votre trajet</b></button>
+          <div class="form-group"> <label>Date de départ</label> <input name="date" type="date" class="form-control" placeholder="2" required="required"> </div>
+          <button type="submit" class="btn mt-4 btn-block p-2 btn-outline-secondary"><b>Rechercher votre trajet</b></button>
         </form>
       </div>
     </div>
