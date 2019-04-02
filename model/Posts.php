@@ -1,6 +1,6 @@
 <?php
 
-class Posts extends PostsManager
+class Reviews extends ReviewsManager
 {
 
   protected $id,

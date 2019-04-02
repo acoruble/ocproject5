@@ -1,17 +1,23 @@
 <?php
 session_start();
 require('model/Manager.php');
-require('model/PostsManager.php');
+// require('model/ReviewsManager.php');
 require('model/WayManager.php');
 require('model/UserManager.php');
 require('model/Way.php');
-require('model/Posts.php');
+// require('model/Reviews.php');
 require('model/User.php');
-require('controller/FrontEnd.php');
-require('controller/BackEnd.php');
+require('controller/frontend/FrontEnd.php');
+require('controller/backend/BackEnd.php');
+require('controller/backend/backendUser.php');
+require('controller/backend/backendway.php');
 
 $frontend = new FrontEnd();
 $backend = new BackEnd();
+$backendUser = new backendUser();
+$backendWay = new backendWay();
+
+$backendWay->maj_way();
 
 if (empty($_SERVER["QUERY_STRING"])) {
   $frontend->home();
@@ -38,7 +44,7 @@ elseif (isset($_GET['action'])) {
     }
   }
   elseif ($_GET['action'] === 'session') {
-    $backend->session();
+    $backendUser->session();
   }
   elseif ($_GET['action'] === 'contact') {
     $frontend->contact();
@@ -62,28 +68,28 @@ elseif (isset($_GET['admin'])) {
   if(isset($_SESSION['nom']) && isset($_SESSION['id']))
   {
     if ($_GET['admin'] === 'results') {
-      $backend->results();
+      $backendWay->results();
     }
     elseif ($_GET['admin'] === 'new_way') {
-      $backend->new_way();
+      $backendWay->new_way();
     }
     elseif ($_GET['admin'] === 'new_way_post') {
-      $backend->new_way_post();
+      $backendWay->new_way_post();
     }
     elseif ($_GET['admin'] === 'management_way') {
-      $backend->management_way();
+      $backendWay->management_way();
     }
     elseif ($_GET['admin'] === 'read_way') {
-      $backend->read_way();
+      $backendWay->read_way();
     }
     elseif ($_GET['admin'] === 'update_way') {
-      $backend->update_way();
+      $backendWay->update_way();
     }
     elseif ($_GET['admin'] === 'update_way_post') {
-      $backend->update_way_post();
+      $backendWay->update_way_post();
     }
     elseif ($_GET['admin'] === 'delete_way') {
-      $backend->delete_way();
+      $backendWay->delete_way();
     }
     elseif ($_GET['admin'] === 'booking') {
       $backend->booking();
@@ -96,16 +102,16 @@ elseif (isset($_GET['admin'])) {
       $backend->review_passenger();
     }
     elseif ($_GET['admin'] === 'account_management') {
-      $backend->account_management();
+      $backendUser->account_management();
     }
     elseif ($_GET['admin'] === 'update_account') {
-      $backend->update_account();
+      $backendUser->update_account();
     }
     elseif ($_GET['admin'] === 'my_account') {
-      $backend->my_account();
+      $backendUser->my_account();
     }
     elseif ($_GET['admin'] === 'log_out') {
-      $backend->log_out();
+      $backendUser->log_out();
       $frontend->home();
     }
 
@@ -113,11 +119,11 @@ elseif (isset($_GET['admin'])) {
 
 
 
-//     elseif ($_GET['admin'] === 'createpost') {
+//     elseif ($_GET['admin'] === 'createreview') {
 //       $backend->create();
 //     }
 //
-//     elseif ($_GET['admin'] === 'updatepost') {
+//     elseif ($_GET['admin'] === 'updatereview') {
 //       $backend->update();
 //     }
 //     elseif ($_GET['admin'] === 'postupdate') {
@@ -125,7 +131,7 @@ elseif (isset($_GET['admin'])) {
 //       $backend->board();
 //     }
 //
-//     elseif ($_GET['admin'] === 'deletepost') {
+//     elseif ($_GET['admin'] === 'deletereview') {
 //       $backend->delete();
 //       $backend->board();
 //     }

@@ -13,18 +13,17 @@ class WayManager extends Manager
     return $correct;
   }
 
-  // public function get($id)
-  // {
-  //   $ways=[];
-  //   $db = $this->dbConnect();
-  //   $way = $db->prepare('SELECT * FROM way WHERE ID = ? ORDER BY Date_way DESC');
-  //   $way->execute(array($id));
-  //   while($data = $way->fetch())
-  //   {
-  //     $ways[] = new way($data);
-  //   }
-  //   return $ways;
-  // }
+  public function getAll()
+  {
+    $ways=[];
+    $db = $this->dbConnect();
+    $way = $db->query('SELECT * FROM way');
+    while($data = $way->fetch())
+    {
+      $ways[]= new way($data);
+    }
+    return $ways;
+  }
 
   public function get($id)
   {

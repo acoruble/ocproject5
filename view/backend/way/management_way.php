@@ -24,27 +24,11 @@
                     <th class="text-center text-body">Trajet<br></th>
                   </tr>
                 </thead>
-                <?php foreach ($listWay as $way): ?>
-                <tbody>
-                  <tr>
-                    <td class="text-center">
-                      <p class="">
-                      <?= $way->status() ?>
-                      </p>
-                    </td>
-                    <td class="text-center border">
-                      <?= $way->date_way()?></td>
-                    <td class="text-center">
-                      <a href="index.php?admin=read_way&id=<?= $way->id() ?>" class="btn btn-xs btn-secondary">Voir<br></a>
-                    </td>
-                    <td class="text-center">
-                      <a href="index.php?admin=update_way&id=<?= $way->id() ?>" class="btn btn-xs btn-secondary">Modifier</a>
-                    </td>
-                    <td class="text-center">
-                      <a href="index.php?admin=delete_way&idWayDelete=<?= $way->id() ?>" class="btn btn-xs btn-info">Supprimer</a>
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
+                <?php foreach ($someWay as $oneWay) {
+                echo $oneWay;
+              }
+              ?>
+
                 </tbody>
               </table>
             </div>
