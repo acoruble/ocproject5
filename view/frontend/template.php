@@ -31,49 +31,50 @@
   <!-- JavaScript dependencies -->
   <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-secondary shadow" style="">
     <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" style="">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar12"> <a class="navbar-brand d-none d-md-block" href="index.php"><i class="fa d-inline fa-car"></i>
-        </a>
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item"> <a class="nav-link" href="index.php">Rechercher un trajet</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="index.php?admin=new_way">Proposer un trajet</a> </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item"> <a class="nav-link" href="index.php?action=connection">Se connecter</a> </li>
-          <li class="nav-item"> <a class="nav-link text-primary" href="index.php?action=registration">S'enregistrer</a> </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar12"> <a class="navbar-brand d-none d-md-block" href="index.php"><i class="fa d-inline fa-car"></i>
+    </a>
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item"> <a class="nav-link" href="index.php">Rechercher un trajet</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="index.php?admin=new_way">Proposer un trajet</a> </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item"> <a class="nav-link" href="index.php?action=connection">Se connecter</a> </li>
+      <li class="nav-item"> <a class="nav-link text-primary" href="index.php?action=registration">S'enregistrer</a> </li>
+    </ul>
+  </div>
+</div>
+</nav>
 
 <?= $content ?>
 
-
+<footer class="footer">
   <div class="text-body bg-secondary">
     <div class="container">
-          <div class="row w-100">
-            <div class="col-md-12">
-              <ul class="nav nav-pills text-center align-items-baseline justify-content-center">
-                <li class="nav-item" > <a href="index.php?action=FAQ" class="nav-link">FAQ</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="index.php?action=mentions_legales">Mentions légales</a> </li>
-                <li class="nav-item"> <a href="index.php?action=CGU" class="nav-link">CGU</a> </li>
-                <li class="nav-item"> <a href="index.php?action=contact" class="nav-link">Contact</a> </li>
-                <li class="nav-item"> <a href="index.php?action=qui_suis_je" class="nav-link">Qui suis-je ?</a> </li>
-              </ul>
-            </div>
+      <div class="row w-100">
+        <div class="col-md-12">
+          <ul class="nav nav-pills text-center align-items-baseline justify-content-center">
+            <li class="nav-item" > <a href="index.php?action=FAQ" class="nav-link">FAQ</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="index.php?action=mentions_legales">Mentions légales</a> </li>
+            <li class="nav-item"> <a href="index.php?action=CGU" class="nav-link">CGU</a> </li>
+            <li class="nav-item"> <a href="index.php?action=contact" class="nav-link">Contact</a> </li>
+            <li class="nav-item"> <a href="index.php?action=qui_suis_je" class="nav-link">Qui suis-je ?</a> </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
   <div class="text-body bg-secondary">
     <div class="container">
       <div class="row">
-            <div class="col-md-12 text-center">
-              <p class="small lead w-100 text-capitalize text-muted">© 2018 Coruble Anne-Lise. Openclassroom Projet 5</p>
+        <div class="col-md-12 text-center">
+          <p class="small lead w-100 text-capitalize text-muted">© 2018 Coruble Anne-Lise. Openclassroom Projet 5</p>
         </div>
       </div>
     </div>
   </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

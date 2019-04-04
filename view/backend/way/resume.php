@@ -59,7 +59,7 @@
                 </tr>
                 <tr></tr>
               </tbody>
-              <div class="col-md-12 p-2"><a class="btn btn-lg btn-info" href="index.php?admin=booking&id=<?= $way->id() ?>">Réserver une place</a></div>
+              <?= $_booking_or_not ?>
             </table>
           </div>
         </div>

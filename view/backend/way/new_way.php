@@ -1,7 +1,7 @@
 <?php ob_start();
 ?>
 
-<div class="py-4 text-center">
+<div class="py-2 text-center">
   <div class="container">
     <div class="row">
       <div class="mx-auto col-lg-6 col-10">

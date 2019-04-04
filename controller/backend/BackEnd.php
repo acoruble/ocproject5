@@ -14,15 +14,7 @@ class backend
 
 
 
-  public function booking()
-  {
-    $way = new Way();
-    $way = $way -> get($_GET['id']);
-    $user = new User();
-    $passenger = $user -> get($_SESSION['id']);
-    $booking = $way -> booking($_GET['id'], $_SESSION['id']);
-    header('Location: index.php?admin=management_way');
-  }
+
 
 
 

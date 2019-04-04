@@ -50,7 +50,7 @@ class UserManager extends Manager
       'Email' => $email,
     ));
   }
-
+  
   public function get($id)
   {
     $db = $this->dbConnect();

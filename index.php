@@ -1,19 +1,19 @@
 <?php
 session_start();
 require('model/Manager.php');
-// require('model/ReviewsManager.php');
+require('model/ReviewManager.php');
 require('model/WayManager.php');
 require('model/UserManager.php');
 require('model/Way.php');
-// require('model/Reviews.php');
+require('model/Review.php');
 require('model/User.php');
 require('controller/frontend/FrontEnd.php');
-require('controller/backend/BackEnd.php');
+require('controller/backend/backendReview.php');
 require('controller/backend/backendUser.php');
 require('controller/backend/backendway.php');
 
 $frontend = new FrontEnd();
-$backend = new BackEnd();
+$backendReview = new backendReview();
 $backendUser = new backendUser();
 $backendWay = new backendWay();
 
@@ -40,7 +40,7 @@ elseif (isset($_GET['action'])) {
       $frontend->connection();
     }
     else {
-      $backend->my_account();
+      $backendUser->my_account();
     }
   }
   elseif ($_GET['action'] === 'session') {
@@ -92,14 +92,17 @@ elseif (isset($_GET['admin'])) {
       $backendWay->delete_way();
     }
     elseif ($_GET['admin'] === 'booking') {
-      $backend->booking();
+      $backendWay->booking();
     }
 
     elseif ($_GET['admin'] === 'review_driver') {
-      $backend->review_driver();
+      $backendReview->review_driver();
+    }
+    elseif ($_GET['admin'] === 'review_driver_post') {
+      $backendReview->review_driver_post();
     }
     elseif ($_GET['admin'] === 'review_passenger') {
-      $backend->review_passenger();
+      $backendReview->review_passenger();
     }
     elseif ($_GET['admin'] === 'account_management') {
       $backendUser->account_management();

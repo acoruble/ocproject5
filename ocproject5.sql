@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 20 mars 2019 à 07:49
--- Version du serveur :  5.7.21
--- Version de PHP :  5.6.35
+-- Généré le :  jeu. 04 avr. 2019 à 10:10
+-- Version du serveur :  5.7.23
+-- Version de PHP :  7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -72,9 +72,11 @@ INSERT INTO `people` (`ID`, `Name`, `Surname`, `Password`, `Email`) VALUES
 DROP TABLE IF EXISTS `review`;
 CREATE TABLE IF NOT EXISTS `review` (
   `ID` int(11) NOT NULL,
-  `Post` text NOT NULL,
-  `Author` varchar(255) NOT NULL,
+  `Author` int(255) NOT NULL,
   `Way_ID` int(11) NOT NULL,
+  `Target` int(255) NOT NULL,
+  `Rating` int(11) NOT NULL,
+  `Content` text NOT NULL,
   KEY `ID` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -104,16 +106,19 @@ CREATE TABLE IF NOT EXISTS `way` (
   `Passenger_6` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_driver` (`Driver`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `way`
 --
 
 INSERT INTO `way` (`ID`, `Status`, `Driver`, `Starting_point`, `Destination`, `Passenger`, `Car`, `Date_way`, `Time_start`, `Time_arrival`, `Passenger_1`, `Passenger_2`, `Passenger_3`, `Passenger_4`, `Passenger_5`, `Passenger_6`) VALUES
-(16, 'En cours', 15, '45 Rue de Rivoli, Paris, France', '45 Boulevard Haussmann, Paris, France', '1', 'c4picasso', '2019-03-08', '01:10', '11:51', '15', '', '', '', '', ''),
-(17, 'En cours', 16, '44 Rue de Rivoli, Paris, France', '51 Rue de Dunkerque, Paris, France', '1', 'citroen', '2019-03-08', '10:10', '10:10', '16', '', '', '', '', ''),
-(18, 'En cours', 14, '45 Rue de Dunkerque, Paris, France', '57 Rue de Dunkerque, Paris, France', '0', 'renault', '2019-03-08', '11:11', '12:12', '', '', '', '', '', '');
+(16, 'Terminé', 15, '45 Rue de Rivoli, Paris, France', '45 Boulevard Haussmann, Paris, France', '0', 'c4picasso', '2019-03-08', '01:10', '11:51', '', '', '', '', '', ''),
+(17, 'Terminé', 16, '44 Rue de Rivoli, Paris, France', '51 Rue de Dunkerque, Paris, France', '1', 'citroen', '2019-03-08', '10:10', '10:10', '16', '', '', '', '', ''),
+(18, 'Terminé', 14, '45 Rue de Dunkerque, Paris, France', '57 Rue de Dunkerque, Paris, France', '0', 'renault', '2019-03-08', '11:11', '12:12', '', '', '', '', '', ''),
+(20, 'Terminé', 16, '63 Rue de Rivoli, Paris, France', '82 Rue de Dunkerque, Paris, France', '0', 'c4 picasso', '2019-04-03', '19:20', '22:30', '', '', '', '', '', ''),
+(24, 'Terminé', 16, '53 Boulevard Haussmann, Paris, France', '32 Rue de Dunkerque, Paris, France', '1', 'vdb', '2019-04-04', '10:20', '11:00', '15', '', '', '', '', ''),
+(25, 'Terminé', 15, '5475A Rue du Parc Coussan, Île-aux-Moines, France', '58 Rue de Dunkerque, Paris, France', '0', 'cd', '2019-04-01', '10:10', '10:10', '', '', '', '', '', '');
 
 --
 -- Contraintes pour les tables déchargées

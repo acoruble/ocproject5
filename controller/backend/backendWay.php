@@ -9,9 +9,17 @@ class backendWay
   {
     $way = new Way();
     $ways = $way -> getAll();
+
     foreach ($ways as $way) {
-      $date_test = strtotime($way->date_way());
-      $date_limit = time();
+      $date_day = strval($way->date_way());
+      $date_hour = strval($way->time_start());
+      $date_test = "$date_day $date_hour";
+      $tz = new DateTimeZone('Europe/Paris');
+      $date_test = new DateTime($date_test, $tz);
+
+      date_default_timezone_set('Europe/Paris');
+      $date_limit = new DateTime('');
+
       if ( $date_test < $date_limit)
       {
         $id = $way->id();
@@ -36,7 +44,6 @@ class backendWay
         $passenger_1, $passenger_2, $passenger_3, $passenger_4, $passenger_5, $passenger_6 );
 
       }
-
     }
   }
 
@@ -45,7 +52,8 @@ class backendWay
     $way = new Way();
     $ways = $way-> search($_POST['date']);
     if (empty($ways)) {
-      echo "<div class='alert alert-danger' role='alert'>Désolé, aucun trajet n'est disponible pour l'instant.</div>";
+      echo "<div class='alert alert-danger' role='alert'>Désolé, aucun trajet n'est disponible pour l'instant.
+      </div>";
       require ('view/frontend/welcome.php');
     }
     else {
@@ -55,19 +63,36 @@ class backendWay
       $ad2 = $_POST['starting_point'];
       $address2 = $way-> getPoints($ad2);
       // Puis calcul de la distance entre les deux points
-      $result1 = $way-> distance($address1['lat'], $address1['lng'], $address2['lat'], $address2['lng']).' Km';
+      $result1 = $way-> distance($address1['lat'], $address1['lng'], $address2['lat'], $address2['lng']);
 
       $ad3 = $ways[0]->destination();
       $address3 = $way-> getPoints($ad3);
       $ad4 = $_POST['destination'];
       $address4 = $way-> getPoints($ad4);
       // Puis calcul de la distance entre les deux points
-      $result2 = $way-> distance($address3['lat'], $address3['lng'], $address4['lat'], $address4['lng']).' Km';
+      $result2 = $way-> distance($address3['lat'], $address3['lng'], $address4['lat'], $address4['lng']);
       $final_result = $result1 + $result2;
       // Faire cela pour chaque trajet
       // Les enregistrer dans un tableau de résultat
       // Les afficher par distance en km croissante
+      // <!> AFFICHER SEULEMENT LES TRAJETS EN COURS ?!?
       require ('view/backend/way/results.php');
+    }
+  }
+
+  public function booking()
+  {
+    $way = new Way();
+    $way = $way -> get($_GET['id']);
+    $user = new User();
+    $passenger = $user -> get($_SESSION['id']);
+    if ($way->driver() == $_SESSION['id']) {
+      echo "<div class='alert alert-danger' role='alert'>Vous êtes déjà conducteur de ce trajet !.</div>";
+      header('Location: index.php');
+    }
+    else {
+      $booking = $way -> booking($_GET['id'], $_SESSION['id']);
+      header('Location: index.php?admin=management_way');
     }
   }
 
@@ -93,18 +118,18 @@ class backendWay
     $listWay = $way -> listWay($_SESSION['id']);
     $someWay=[];
     foreach ($listWay as $way) {
-      $id=$way->id();
-      $status=$way->status();
-      $date_way=$way->date_way();
+      $id = $way->id();
+      $status = $way->status();
+      $date_way = $way->date_way();
 
       if ($way->status() == 'Terminé') {
-        if ($way->name() == SESSION['name']) {
-          // code...
+
+        if ($way->driver() == $_SESSION['id']) {
+          $update_or_review_link = "<a href='index.php?admin=review_driver&id=$id' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
         } else {
-          // code...
+          $update_or_review_link = "<a href='index.php?admin=review_passenger&id=$id' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
         }
 
-        $update_or_review_link = "<a href='index.php?admin=review_driver&id=$id' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
       } else {
         $update_or_review_link = "<a href='index.php?admin=update_way&id=$id' class='btn btn-xs btn-secondary'>Modifier</a>";
       }
@@ -112,24 +137,24 @@ class backendWay
       $oneWay =
       "
       <tbody>
-        <tr>
-          <td class='text-center'>
-            <p>
-            $status
-            </p>
-          </td>
-          <td class='text-center border'>
-            $date_way</td>
-          <td class='text-center'>
-            <a href='index.php?admin=read_way&id=$id ?' class='btn btn-xs btn-secondary'>Voir<br></a>
-          </td>
-          <td class='text-center'>
-            $update_or_review_link
-          </td>
-          <td class='text-center'>
-            <a href='index.php?admin=delete_way&idWayDelete=$id' class='btn btn-xs btn-info'>Supprimer</a>
-          </td>
-        </tr>
+      <tr>
+      <td class='text-center'>
+      <p>
+      $status
+      </p>
+      </td>
+      <td class='text-center border'>
+      $date_way</td>
+      <td class='text-center'>
+      <a href='index.php?admin=read_way&id=$id ?' class='btn btn-xs btn-secondary'>Voir<br></a>
+      </td>
+      <td class='text-center'>
+      $update_or_review_link
+      </td>
+      <td class='text-center'>
+      <a href='index.php?admin=delete_way&idWayDelete=$id' class='btn btn-xs btn-info'>Supprimer</a>
+      </td>
+      </tr>
       ";
       array_push($someWay, $oneWay);
     }
@@ -142,14 +167,18 @@ class backendWay
     $way = $way -> get($_GET['id']);
     $user = new User();
     $driver = $user ->get($way->driver());
-    // var_dump($way->passenger_1());
+
+    if ($way->status() == 'Terminé') {
+      $_booking_or_not = "<div class='col-md-12 p-2'><p class='btn btn-lg btn-info'>Désolé, ce trajet est passé.</p></div>";
+    }
+    else {
+      $_booking_or_not = "<div class='col-md-12 p-2'><a class='btn btn-lg btn-info' href='index.php?admin=booking&id=<?= $way->id() ?>'>Réserver une place</a></div>";
+    }
+
     if ($way->passenger_1()) {
       $passenger = $user ->get($way->passenger_1());
       $passenger_name = $passenger->name();
       $passenger_surname = $passenger->surname();
-      // var_dump($passenger);
-      // var_dump($passenger_name);
-      // var_dump($passenger_surname);
     }
     else {
       $passenger_name = '';
