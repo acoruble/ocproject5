@@ -2,60 +2,60 @@
 
 require_once("Manager.php");
 
-class PostsManager extends Manager
+class ReviewsManager extends Manager
 {
-  public function existPost($id)
+  public function existReview($id)
   {
     $db = $this->dbConnect();
-    $exist = $db->prepare('SELECT ID FROM posts WHERE ID=?');
+    $exist = $db->prepare('SELECT ID FROM reviews WHERE ID=?');
     $exist->execute(array($id));
     $correct = $exist->fetch();
     return $correct;
   }
 
-  public function createPost($title, $content)
+  public function createReview($title, $content)
   {
     $db = $this->dbConnect();
-    $createPost = $db->prepare('INSERT INTO posts(title, content) VALUES(:title, :content)');
-    $createPost -> execute(array(
+    $createReview = $db->prepare('INSERT INTO reviews(title, content) VALUES(:title, :content)');
+    $createReview -> execute(array(
       'title' => $title,
       'content' => $content,
     ));
   }
 
 
-  public function getFirstPost()
+  public function getFirstReview()
   {
     $db = $this->dbConnect();
-    $firstPost = $db->query('SELECT ID, title, content FROM posts ORDER BY ID');
-    $data = $firstPost->fetch();
-    return new Posts($data);
+    $firstReview = $db->query('SELECT ID, title, content FROM reviews ORDER BY ID');
+    $data = $firstReview->fetch();
+    return new Reviews($data);
   }
 
-  public function getPosts($ID)
+  public function getReviews($ID)
   {
     $db = $this->dbConnect();
-    $postsById = $db->prepare('SELECT ID, title, content FROM posts WHERE ID=? LIMIT 0,1 ');
-    $postsById->execute(array($ID));
-    $data = $postsById->fetch();
-    return new Posts($data);
+    $reviewsById = $db->prepare('SELECT ID, title, content FROM reviews WHERE ID=? LIMIT 0,1 ');
+    $reviewsById->execute(array($ID));
+    $data = $reviewsById->fetch();
+    return new Reviews($data);
   }
 
 
-  public function getListPosts() {
-    $posts=[];
+  public function getListReviews() {
+    $reviews=[];
     $db = $this->dbConnect();
-    $listPosts = $db->query('SELECT * FROM posts ORDER BY ID');
-    while($data = $listPosts->fetch())
+    $listReviews = $db->query('SELECT * FROM reviews ORDER BY ID');
+    while($data = $listReviews->fetch())
     {
-      $posts[] = new Posts($data);
+      $reviews[] = new Reviews($data);
     }
-    return $posts;
+    return $reviews;
   }
 
   public function update($id, $title, $content) {
     $db = $this->dbConnect();
-    $update = $db->prepare('UPDATE posts SET content = :content, title = :title WHERE ID=:id');
+    $update = $db->prepare('UPDATE reviews SET content = :content, title = :title WHERE ID=:id');
     $update->execute(array(
       'id' => $id,
       'title' => $title,
@@ -65,7 +65,7 @@ class PostsManager extends Manager
 
   public function delete($chapter) {
     $db = $this->dbConnect();
-    $delete= $db->prepare('DELETE FROM posts WHERE ID=?');
+    $delete= $db->prepare('DELETE FROM reviews WHERE ID=?');
     $delete->execute(array($chapter));
   }
 

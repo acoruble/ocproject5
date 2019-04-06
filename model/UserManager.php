@@ -50,10 +50,9 @@ class UserManager extends Manager
       'Email' => $email,
     ));
   }
-
+  
   public function get($id)
   {
-    $user=[];
     $db = $this->dbConnect();
     $userById = $db->prepare('SELECT * FROM people WHERE ID = ?');
     $userById->execute(array($id));
@@ -69,6 +68,7 @@ class UserManager extends Manager
       'Surname' => $surname,
       'Password' => $password,
       'Email' => $email,
+      'id' => $id,
     ));
   }
 
