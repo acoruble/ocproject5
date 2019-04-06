@@ -4,11 +4,11 @@ require_once("Manager.php");
 
 class ReviewManager extends Manager
 {
-  public function existReview($id)
+  public function existReview($way_id)
   {
     $db = $this->dbConnect();
-    $exist = $db->prepare('SELECT ID FROM review WHERE ID=?');
-    $exist->execute(array($id));
+    $exist = $db->prepare('SELECT Target FROM review WHERE Way_ID=?');
+    $exist->execute(array($way_id));
     $correct = $exist->fetch();
     return $correct;
   }
@@ -26,35 +26,39 @@ class ReviewManager extends Manager
     ));
   }
 
+  //
+  // public function getFirstReview()
+  // {
+  //   $db = $this->dbConnect();
+  //   $firstReview = $db->query('SELECT ID, title, content FROM review ORDER BY ID');
+  //   $data = $firstReview->fetch();
+  //   return new Review($data);
+  // }
 
-  public function getFirstReview()
+  public function getReview($id_target)
   {
+    $reviews=[];
     $db = $this->dbConnect();
-    $firstReview = $db->query('SELECT ID, title, content FROM review ORDER BY ID');
-    $data = $firstReview->fetch();
-    return new Review($data);
-  }
-
-  public function getReview($ID)
-  {
-    $db = $this->dbConnect();
-    $reviewById = $db->prepare('SELECT ID, title, content FROM review WHERE ID=? LIMIT 0,1 ');
-    $reviewById->execute(array($ID));
-    $data = $reviewById->fetch();
-    return new Review($data);
-  }
-
-
-  public function getListReview() {
-    $review=[];
-    $db = $this->dbConnect();
-    $listReview = $db->query('SELECT * FROM review ORDER BY ID');
-    while($data = $listReview->fetch())
+    $someReviews = $db->prepare('SELECT * FROM review WHERE target=?');
+    $someReviews->execute(array($id_target));
+    while ($data = $someReviews->fetch())
     {
-      $review[] = new Review($data);
+      $reviews[] = new Review($data);
     }
-    return $review;
+    return $reviews;
   }
+
+
+  // public function getListReview() {
+  //   $review=[];
+  //   $db = $this->dbConnect();
+  //   $listReview = $db->query('SELECT * FROM review ORDER BY ID');
+  //   while($data = $listReview->fetch())
+  //   {
+  //     $review[] = new Review($data);
+  //   }
+  //   return $review;
+  // }
 
   public function update($id, $title, $content) {
     $db = $this->dbConnect();

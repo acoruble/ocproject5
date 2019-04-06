@@ -53,7 +53,7 @@ class backendReview
       var_dump($_POST);
       $review->createReview($_GET['driver_id'],$_GET['way_id'],$_POST['target'],$_POST['rating'],$_POST['content']);
       // + htmlspecialchars !!!
-      // header('Location: index.php?admin=board');
+      header('Location: index.php');
     // }
   }
   public function review_passenger()

@@ -55,6 +55,8 @@ class backendUser
   {
     $user = new User();
     $you = $user->get($_SESSION['id']);
+    $review = new Review();
+    $reviews = $review->getReview($_SESSION['id']);
     require ('view/backend/account/my_account.php');
   }
 
