@@ -16,7 +16,7 @@
         <div class="col-md-12">
           <div class="container">
             <div class="row mx-auto col-md-10 col-md-offset-2 table-responsive shadow">
-              <a href="index.php?admin=new_way" class="btn btn-xs float-right btn-secondary mt-1">Proposer un nouveau trajet</a>
+              <a href="new-way" class="btn btn-xs float-right btn-secondary mt-1">Proposer un nouveau trajet</a>
               <table class="table table-bordered table-hover table-striped">
                 <thead>
                   <tr>

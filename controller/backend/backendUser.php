@@ -46,7 +46,6 @@ class backendUser
     else {
       $user = new User();
       $user->update($_SESSION['id'],$_POST['name'],$_POST['surname'],$_POST['password'],$_POST['email']);
-      var_dump($_POST);
       // header('Location: index.php?admin=my_account');
     }
   }

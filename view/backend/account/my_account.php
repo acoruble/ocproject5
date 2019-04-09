@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-md-12 shadow">
             <div class="row">
-              <div class="col-md-12 p-1"><a class="btn btn-outline-info float-right" href="index.php?admin=account_management">Modifier mes informations<br></a></div>
+              <div class="col-md-12 p-1"><a class="btn btn-outline-info float-right" href="my-account-management">Modifier mes informations<br></a></div>
               <div class="col-md-6 p-1">
                 <h2 class="text-capitalize text-center"><?= $you->name() ?> <?= $you->surname() ?></h2>
                 <!-- <img class="img-fluid d-block rounded-circle" src="https://static.pingendo.com/img-placeholder-3.svg"> -->

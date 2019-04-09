@@ -25,17 +25,22 @@ class WayManager extends Manager
     return $ways;
   }
 
-  public function get($id)
+  public function getByDriver($id_driver)
   {
-    $ways;
     $db = $this->dbConnect();
-    $way = $db->prepare('SELECT * FROM way WHERE ID = ? ORDER BY Date_way DESC');
-    $way->execute(array($id));
-    while($data = $way->fetch())
-    {
-      $ways= new way($data);
-    }
-    return $ways;
+    $way = $db->prepare('SELECT * FROM way WHERE DRIVER = ?');
+    $way->execute(array($id_driver));
+    $data = $way->fetch();
+    return new Way($data);
+  }
+
+  public function getById($id_way)
+  {
+    $db = $this->dbConnect();
+    $way = $db->prepare('SELECT * FROM way WHERE ID = ?');
+    $way->execute(array($id_way));
+    $data = $way->fetch();
+    return new Way($data);
   }
 
   public function listWay($driver)

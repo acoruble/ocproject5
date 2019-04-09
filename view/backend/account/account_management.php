@@ -33,7 +33,7 @@
                             <div class="form-group col-md-6"> <label for="password2">Vérification du nouveau mot de passe</label> <input name ="password2" type="password" class="form-control" id="form20" placeholder="••••" required> </div>
                           </div>
                           <div class="form-group">
-                            <div class="form-check"> <input class="form-check-input" type="checkbox" id="form21" value="on" required> <label class="form-check-label" for="form21">Je suis toujours d'accord avec <a href="index.php?action=CGU" class="text-secondary">Les conditions d'utilisations </a>du site du co-voiturage du pays flèchois</label> </div>
+                            <div class="form-check"> <input class="form-check-input" type="checkbox" id="form21" value="on" required> <label class="form-check-label" for="form21">Je suis toujours d'accord avec <a href="CGU" class="text-secondary">Les conditions d'utilisations </a>du site du co-voiturage du pays flèchois</label> </div>
                           </div> <button type="submit" class="btn btn-secondary w-100">Mettre à jour mes informations</button>
                         </form>
                       </div>

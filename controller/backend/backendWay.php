@@ -83,7 +83,7 @@ class backendWay
   public function booking()
   {
     $way = new Way();
-    $way = $way -> get($_GET['id']);
+    $way = $way -> getById($_GET['id']);
     $user = new User();
     $passenger = $user -> get($_SESSION['id']);
     if ($way->driver() == $_SESSION['id']) {
@@ -125,7 +125,7 @@ class backendWay
       if ($way->status() == 'Terminé') {
 
         if ($way->driver() == $_SESSION['id']) {
-          $update_or_review_link = "<a href='index.php?admin=review_driver&id=$id' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
+          $update_or_review_link = "<a href='review-driver-([0-9]*)' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
         } else {
           $update_or_review_link = "<a href='index.php?admin=review_passenger&id=$id' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
         }
@@ -146,7 +146,7 @@ class backendWay
       <td class='text-center border'>
       $date_way</td>
       <td class='text-center'>
-      <a href='index.php?admin=read_way&id=$id ?' class='btn btn-xs btn-secondary'>Voir<br></a>
+      <a href='read-way-([0-9]+)' class='btn btn-xs btn-secondary'>Voir<br></a>
       </td>
       <td class='text-center'>
       $update_or_review_link
@@ -164,7 +164,7 @@ class backendWay
   public function read_way()
   {
     $way = new Way();
-    $way = $way -> get($_GET['id']);
+    $way = $way -> getById($_GET['id']);
     $user = new User();
     $driver = $user ->get($way->driver());
 
@@ -190,7 +190,7 @@ class backendWay
   public function update_way()
   {
     $way = new Way();
-    $way = $way -> get($_GET['id']);
+    $way = $way -> getById($_GET['id']);
     $user = new User();
     $driver = $user-> get($way->driver());
     require ('view/backend/way/update_way.php');
@@ -199,7 +199,7 @@ class backendWay
   public function update_way_post()
   {
     $way = new Way();
-    $way = $way -> get($_GET['id']);
+    $way = $way -> getById($_GET['id']);
     $status = $way->status();
     $driver = $way->driver();
     $passenger = $way->passenger();
