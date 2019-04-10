@@ -1,0 +1,49 @@
+#--------------------------------------------------
+
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+
+#--------------------------------------------------
+# Règles de réécriture d'URL :
+#--------------------------------------------------
+
+#--------------------------------------------------
+# Welcome :
+RewriteRule ^welcome$ index.php [L]
+
+#--------------------------------------------------
+# User :
+RewriteRule ^connection$ index.php?action=connection [L]
+RewriteRule ^registration$ index.php?action=registration [L]
+RewriteRule ^my-account$ index.php?admin=my_account [L]
+RewriteRule ^log-out$ index.php?admin=log_out [L]
+RewriteRule ^my-account-management$ index.php?admin=account_management [L]
+
+
+#--------------------------------------------------
+# Way :
+RewriteRule ^new-way$ index.php?admin=new_way [L]
+RewriteRule ^my-account$ index.php?admin=my_account [L]
+RewriteRule ^management-way$ index.php?admin=management_way [L]
+RewriteRule ^read-way-([0-9]+)$ index.php?admin=read_way&id=$16 [L]
+
+
+
+#--------------------------------------------------
+# Review :
+RewriteRule ^my-account$ index.php?admin=my_account [L]
+RewriteRule ^review-driver-([0-9]*)$ index.php?admin=review_driver&id=$id [L]
+#RewriteRule ^review-driver-([0-9]+)-([0-9]+)$ index.php?admin=review_driver_post&way_id=<?= $way->id() ?>&driver_id=<?= $way->driver() ?> [L]
+
+
+
+#--------------------------------------------------
+# Other :
+RewriteRule ^FAQ$ index.php?action=FAQ [L]
+RewriteRule ^mentions-legales$ index.php?action=mentions_legales [L]
+RewriteRule ^CGU$ index.php?action=CGU [L]
+RewriteRule ^contact$ index.php?action=contact [L]
+RewriteRule ^qui-suis-je$ index.php?action=qui_suis_je [L]
