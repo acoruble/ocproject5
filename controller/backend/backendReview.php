@@ -17,7 +17,7 @@ class backendReview
 
     if ($nb_passenger == 0)
     {
-      echo "<div class='alert alert-danger' role='alert'>Il n'y a personne à noter.</div>";
+      echo "<div class='alert alert-danger text-center' role='alert'>Il n'y a personne à noter.</div>";
       require ('view/frontend/welcome.php');
     } else {
       for ($i=1; $i <=$nb_passenger ; $i++) {
@@ -36,7 +36,7 @@ class backendReview
   {
     if (!is_string($_POST['target']) || empty($_POST['target']) || !is_string($_POST['target']) || empty($_POST['target']) || !is_string($_POST['content']) || empty($_POST['content']))
     {
-      echo "<div class='alert alert-danger' role='alert'>Merci de vérifier votre titre et votre texte.</div>";
+      echo "<div class='alert alert-danger text-center' role='alert'>Merci de vérifier votre titre et votre texte.</div>";
     }
     else {
     $way = new Way();
@@ -46,7 +46,7 @@ class backendReview
     $review = new Review();
     $exist = $review->existReview($_GET['way_id']);
     if ($exist) {
-      echo "<div class='alert alert-danger' role='alert'>Vous avez déjà donné votre avis à cette personne sur ce trajet.</div>";
+      echo "<div class='alert alert-danger text-center' role='alert'>Vous avez déjà donné votre avis à cette personne sur ce trajet.</div>";
     }   else {
       $author = htmlspecialchars($_GET['driver_id']);
       $way_id = htmlspecialchars($_GET['way_id']);

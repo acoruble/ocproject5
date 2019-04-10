@@ -29,7 +29,7 @@ class backend
   //   {
   //     if (!is_string($_POST['title']) || empty($_POST['title']) || !is_string($_POST['content']) || empty($_POST['content']))
   //     {
-  //       echo "<div class='alert alert-danger' role='alert'>Merci de vérifier votre titre et votre texte.</div>";
+  //       echo "<div class='alert alert-danger text-center' role='alert'>Merci de vérifier votre titre et votre texte.</div>";
   //       require ('view/backend/createreview.php');
   //     }
   //     else {
@@ -46,7 +46,7 @@ class backend
   //     if (!$correct)
   //     {
   //       header('Location: index.php?admin=board');
-  //       echo "<div class='alert alert-danger' role='alert'>Nous avons un problème, merci de recommencer votre suppression.</div>";
+  //       echo "<div class='alert alert-danger text-center' role='alert'>Nous avons un problème, merci de recommencer votre suppression.</div>";
   //     }
   //     else
   //     {
@@ -61,7 +61,7 @@ class backend
   //     if (!$correct)
   //     {
   //       header('Location: index.php?admin=board');
-  //       echo "<div class='alert alert-danger' role='alert'>Merci de sélectionner un chapitre.</div>";
+  //       echo "<div class='alert alert-danger text-center' role='alert'>Merci de sélectionner un chapitre.</div>";
   //     }
   //     else
   //     {
@@ -76,7 +76,7 @@ class backend
   //     $correct = $reviews-> existReview($_POST['id']);
   //     if (!$correct)
   //     {
-  //       echo "<div class='alert alert-danger' role='alert'>Merci de sélectionner un chapitre.</div>";
+  //       echo "<div class='alert alert-danger text-center' role='alert'>Merci de sélectionner un chapitre.</div>";
   //     }
   //     else
   //     {
@@ -90,7 +90,7 @@ class backend
   //       $correct = $reviews-> existReview($_GET['id']);
   //       if (!$correct)
   //       {
-  //         echo "<div class='alert alert-danger' role='alert'>Merci de sélectionner un chapitre.</div>";
+  //         echo "<div class='alert alert-danger text-center' role='alert'>Merci de sélectionner un chapitre.</div>";
   //       }
   //       else
   //       {
@@ -106,7 +106,7 @@ class backend
   //     $correct = $comments-> existComment($_GET['id']);
   //     if (!$correct)
   //     {
-  //       echo "<div class='alert alert-danger' role='alert'>Nous avons un problème, merci de recommencer votre signalement.</div>";
+  //       echo "<div class='alert alert-danger text-center' role='alert'>Nous avons un problème, merci de recommencer votre signalement.</div>";
   //     }
   //     else
   //     {

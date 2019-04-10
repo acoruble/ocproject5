@@ -52,49 +52,129 @@ class backendWay
     $way = new Way();
     $ways = $way-> search($_POST['date']);
     if (empty($ways)) {
-      echo "<div class='alert alert-danger' role='alert'>Désolé, aucun trajet n'est disponible pour l'instant.
+      echo "<div class='alert alert-danger text-center' role='alert'>Désolé, aucun trajet n'est disponible pour l'instant.
       </div>";
       require ('view/frontend/welcome.php');
     }
     else {
-      // Pour le premier trajet et sa distance de point de départ
-      $ad1 = $ways[0]->starting_point();
-      $address1 = $way-> getPoints($ad1);
-      $ad2 = $_POST['starting_point'];
-      $address2 = $way-> getPoints($ad2);
-      // Puis calcul de la distance entre les deux points
-      $result1 = $way-> distance($address1['lat'], $address1['lng'], $address2['lat'], $address2['lng']);
-
-      $ad3 = $ways[0]->destination();
-      $address3 = $way-> getPoints($ad3);
-      $ad4 = $_POST['destination'];
-      $address4 = $way-> getPoints($ad4);
-      // Puis calcul de la distance entre les deux points
-      $result2 = $way-> distance($address3['lat'], $address3['lng'], $address4['lat'], $address4['lng']);
-      $final_result = $result1 + $result2;
-      // Faire cela pour chaque trajet
-      // Les enregistrer dans un tableau de résultat
-      // Les afficher par distance en km croissante
-      // <!> AFFICHER SEULEMENT LES TRAJETS EN COURS ?!?
+      // // Pour le premier trajet et sa distance de point de départ
+      // $ad1 = $ways[0]->starting_point();
+      // $address1 = $way-> getPoints($ad1);
+      // $ad2 = $_POST['starting_point'];
+      // $address2 = $way-> getPoints($ad2);
+      // // Puis calcul de la distance entre les deux points
+      // $result1 = $way-> distance($address1['lat'], $address1['lng'], $address2['lat'], $address2['lng']);
+      //
+      // $ad3 = $ways[0]->destination();
+      // $address3 = $way-> getPoints($ad3);
+      // $ad4 = $_POST['destination'];
+      // $address4 = $way-> getPoints($ad4);
+      // // Puis calcul de la distance entre les deux points
+      // $result2 = $way-> distance($address3['lat'], $address3['lng'], $address4['lat'], $address4['lng']);
+      // $final_result = $result1 + $result2;
+      // // Faire cela pour chaque trajet
+      // // Les enregistrer dans un tableau de résultat
+      // // Les afficher par distance en km croissante
+      // // <!> AFFICHER SEULEMENT LES TRAJETS EN COURS ?!?
       require ('view/backend/way/results.php');
     }
   }
 
+  // public function booking()
+  // {
+  //   $way = new Way();
+  //   $way = $way -> getById($_GET['id']);
+  //   $user = new User();
+  //   $passenger = $user -> get($_SESSION['id']);
+  //   if ($way->driver() == $_SESSION['id']) {
+  //     echo "<div class='alert alert-danger text-center' role='alert'>Vous êtes déjà conducteur de ce trajet !.</div>";
+  //     header('Location: index.php');
+  //   }
+  //   else {
+  //     $booking = $way -> booking($_GET['id'], $_SESSION['id']);
+  //     header('Location: index.php?admin=management_way');
+  //   }
+  // }
   public function booking()
   {
     $way = new Way();
     $way = $way -> getById($_GET['id']);
     $user = new User();
     $passenger = $user -> get($_SESSION['id']);
+    $nbpassenger = $way-> passenger();
+
     if ($way->driver() == $_SESSION['id']) {
-      echo "<div class='alert alert-danger' role='alert'>Vous êtes déjà conducteur de ce trajet !.</div>";
-      header('Location: index.php');
+      echo "<div class='alert alert-danger text-center' role='alert'>Vous êtes déjà conducteur de ce trajet !</div>";
+      require ('view/frontend/welcome.php');
     }
     else {
-      $booking = $way -> booking($_GET['id'], $_SESSION['id']);
-      header('Location: index.php?admin=management_way');
+      $i=1;
+      $nbpassenger = $nbpassenger+1;
+      $x=1;
+      $booking_already_exist = 0;
+      while ($i <= $nbpassenger)
+      {
+        $passenger_i = "passenger_$i";
+        $passenger_i = $way->$passenger_i();
+        if ($i == $nbpassenger) {
+          // echo "$i";
+          echo "<div class='alert alert-danger text-center' role='alert'>Désolé ce trajet est complet !</div>";
+          break;
+        }
+        elseif ($passenger_i != null) {
+          $i++;
+        }
+        else {
+          while ($x <= 6) {
+            echo "$x";
+            $passenger_x = "passenger_$x";
+            // $passenger_x = $way->$passenger_i();
+            if ($_SESSION['id'] == $way->$passenger_x()) {
+              echo "<div class='alert alert-danger text-center' role='alert'>Vous avez déjà réservé pour ce trajet !</div>";
+              $booking_already_exist = 1;
+              break;
+            }
+            else {
+              echo "c'est ok";
+              $x++;
+              $booking_already_exist = 0;
+            }
+          }
+          if ($booking_already_exist == 0) {
+            $booking_i = "booking_$i";
+            $booking = $way -> $booking_i($_GET['id'], $_SESSION['id'], $i);
+            echo "<div class='alert alert-danger text-center' role='alert'>Trajet réservé !</div>";
+            break;
+          } else {
+            echo "<div class='alert alert-danger text-center' role='alert'>Nous avons un problème !</div>";
+            break;
+          }
+        }
+      }
+      require ('view/frontend/welcome.php');
     }
   }
+
+  // public function check_passenger()
+  // {
+  //   $booking_already_exist = 0;
+  //   $x=1;
+  //   while ($x <= 7) {
+  //     $passenger_x = "passenger_$x";
+  //     // $passenger_x = $way->$passenger_i();
+  //     if ($_SESSION['id'] == $way->$passenger_x()) {
+  //       echo "<div class='alert alert-danger text-center' role='alert'>Vous avez déjà réservé pour ce trajet !</div>";
+  //       $booking_already_exist = 1;
+  //       break;
+  //     }
+  //     else {
+  //       echo "c'est ok";
+  //       $x++;
+  //       $booking_already_exist = 0;
+  //     }
+  //   }
+  //   echo "$booking_already_exist";
+  // }
 
   public function new_way()
   {
@@ -108,16 +188,19 @@ class backendWay
     $user = new User();
     $driver = $user -> get($_SESSION['id']);
     $way = new Way();
-    $test = $way->create(htmlspecialchars($driver->id()), ($_POST['starting_point']), ($_POST['destination']), ($_POST['car']), ($_POST['date']), ($_POST['time_start']), ($_POST['time_arrival']));
+    $test = $way->create(($driver->id()), ($_POST['number_passenger']), ($_POST['starting_point']), ($_POST['destination']), ($_POST['car']), ($_POST['date']), ($_POST['time_start']), ($_POST['time_arrival']));
     header('Location: index.php?admin=management_way');
   }
 
   public function management_way()
   {
     $way = new Way();
-    $listWay = $way -> listWay($_SESSION['id']);
+    $fullWays;
+    $listWay1 = $way -> listWay($_SESSION['id']);
+    $listWay2 = $way ->listWayPassenger1($_SESSION['id']);
+    $fullWays = $listWay1 + $listWay2;
     $someWay=[];
-    foreach ($listWay as $way) {
+    foreach ($fullWays as $way) {
       $id = $way->id();
       $status = $way->status();
       $date_way = $way->date_way();
@@ -125,7 +208,7 @@ class backendWay
       if ($way->status() == 'Terminé') {
 
         if ($way->driver() == $_SESSION['id']) {
-          $update_or_review_link = "<a href='review-driver-([0-9]*)' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
+          $update_or_review_link = "<a href='index.php?admin=review_driver&id=$id' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
         } else {
           $update_or_review_link = "<a href='index.php?admin=review_passenger&id=$id' class='btn btn-xs btn-secondary'>Laisser un avis</a>";
         }
@@ -146,7 +229,7 @@ class backendWay
       <td class='text-center border'>
       $date_way</td>
       <td class='text-center'>
-      <a href='read-way-([0-9]+)' class='btn btn-xs btn-secondary'>Voir<br></a>
+      <a href='index.php?admin=read_way&id=$id' class='btn btn-xs btn-secondary'>Voir<br></a>
       </td>
       <td class='text-center'>
       $update_or_review_link
@@ -167,12 +250,34 @@ class backendWay
     $way = $way -> getById($_GET['id']);
     $user = new User();
     $driver = $user ->get($way->driver());
+    $id_way = $way->id();
 
     if ($way->status() == 'Terminé') {
       $_booking_or_not = "<div class='col-md-12 p-2'><p class='btn btn-lg btn-info'>Désolé, ce trajet est passé.</p></div>";
     }
     else {
-      $_booking_or_not = "<div class='col-md-12 p-2'><a class='btn btn-lg btn-info' href='index.php?admin=booking&id=<?= $way->id() ?>'>Réserver une place</a></div>";
+      $nbpassenger = $way->passenger();
+      $i=1;
+      $nbpassenger = $nbpassenger+1;
+      $booking_already_full = 0;
+      while ($i <= $nbpassenger)
+      {
+        $passenger_i = "passenger_$i";
+        $passenger_i = $way->$passenger_i();
+        if ($i == $nbpassenger) {
+          $booking_already_full = 1;
+          break;
+        }
+        elseif ($passenger_i != null) {
+          $i++;
+          $booking_already_full = 0;
+        }
+    }
+
+    if ($booking_already_full == 0) {
+      $_booking_or_not = "<div class='col-md-12 p-2'><a class='btn btn-lg btn-info' href='index.php?admin=booking&id=$id_way'>Réserver une place</a></div>";
+    } else {
+      $_booking_or_not = "<div class='col-md-12 p-2'><p class='btn btn-lg btn-info'>Désolé, ce trajet est complet.</p></div>";
     }
 
     if ($way->passenger_1()) {
@@ -186,6 +291,7 @@ class backendWay
     }
     require ('view/backend/way/resume.php');
   }
+}
 
   public function update_way()
   {

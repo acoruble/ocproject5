@@ -154,7 +154,7 @@ elseif (isset($_GET['admin'])) {
 //     }
   }
   else {
-    echo "<div class='alert alert-danger' role='alert'>Merci de vous connecter.</div>";
+    echo "<div class='alert alert-danger text-center' role='alert'>Merci de vous connecter.</div>";
     $frontend->connection();
   }
 }

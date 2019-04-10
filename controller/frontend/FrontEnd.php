@@ -26,7 +26,7 @@ class frontend
     if (!is_string($_POST['name']) || empty($_POST['name']) || !is_string($_POST['surname']) || empty($_POST['surname']) || !is_string($_POST['email']) || empty($_POST['email']) || !is_string($_POST['password']) ||
     empty($_POST['password']) || ( ($_POST['password']) != ($_POST['password2']) ) )
     {
-      echo "<div class='alert alert-danger' role='alert'>Merci de vérifier vos informations.</div>";
+      echo "<div class='alert alert-danger text-center' role='alert'>Merci de vérifier vos informations.</div>";
       require ('view/frontend/account/registration.php');
     }
     else {
@@ -37,7 +37,7 @@ class frontend
         header('Location: index.php');
       }
       else {
-        echo "<div class='alert alert-danger' role='alert'>Cet e-mail est déjà utilisé.</div>";
+        echo "<div class='alert alert-danger text-center' role='alert'>Cet e-mail est déjà utilisé.</div>";
         require ('view/frontend/account/registration.php');
       }
     }
@@ -79,7 +79,7 @@ class frontend
   // {
   //   if (!is_string($_POST['pseudo']) || empty($_POST['pseudo']) || !is_string($_POST['message']) || empty($_POST['message']))
   //   {
-  //     echo "<div class='alert alert-danger' role='alert'>Merci de vérifier votre pseudo ou votre message.</div>";
+  //     echo "<div class='alert alert-danger text-center' role='alert'>Merci de vérifier votre pseudo ou votre message.</div>";
   //     header('Location: index.phps');
   //   }
   //   else {
@@ -88,7 +88,7 @@ class frontend
   //     $correct = $reviews-> existReview($_POST['ReviewClick']);
   //     if (!$correct)
   //     {
-  //       echo "<div class='alert alert-danger' role='alert'>Merci de vérifier votre pseudo ou votre message.</div>";
+  //       echo "<div class='alert alert-danger text-center' role='alert'>Merci de vérifier votre pseudo ou votre message.</div>";
   //       require ('view/frontend/chapterdisplay.php');
   //     }
   //     else {
@@ -103,7 +103,7 @@ class frontend
   //   $correct = $comments-> existComment($_POST['IDComment']);
   //   if (!$correct)
   //   {
-  //     echo "<div class='alert alert-danger' role='alert'>Nous avons un problème, merci de recommencer votre signalement.</div>";
+  //     echo "<div class='alert alert-danger text-center' role='alert'>Nous avons un problème, merci de recommencer votre signalement.</div>";
   //     require ('view/frontend/chapterdisplay.php');
   //   }
   //   else

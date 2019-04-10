@@ -64,7 +64,7 @@ html {
   }
   .footer {
   	display : table-row;
-  	height: 83px; /* à titre d'exemple */
+  	height: 1em;
   }
 
 @-ms-viewport {

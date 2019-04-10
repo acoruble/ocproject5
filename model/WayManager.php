@@ -56,6 +56,20 @@ class WayManager extends Manager
     return $ways;
   }
 
+  public function listWayPassenger1($passenger)
+  {
+    $ways=[];
+    $db = $this->dbConnect();
+    $way = $db->prepare('SELECT * FROM way WHERE Passenger_1 = ? ORDER BY Date_way DESC');
+    $way->execute(array($passenger));
+    while($data = $way->fetch())
+    {
+      $ways[] = new way($data);
+    }
+    return $ways;
+  }
+
+
   public function search($date)
   {
     $ways=[];
@@ -87,7 +101,7 @@ class WayManager extends Manager
     return $meter;
   }
 
-  public function create($driver,$starting_point,$destination,$car,$date,$time_start,$time_arrival)
+  public function create($driver,$passenger,$starting_point,$destination,$car,$date,$time_start,$time_arrival)
   {
     $db = $this->dbConnect();
     $newWay = $db->prepare
@@ -96,7 +110,7 @@ class WayManager extends Manager
     $newWay -> execute(array(
       'status' => 'En cours',
       'driver' => $driver,
-      'passenger' => 0,
+      'passenger' => $passenger,
       'starting_point' => $starting_point,
       'destination' => $destination,
       'car' => $car,
@@ -142,66 +156,125 @@ class WayManager extends Manager
       ));
     }
 
-    public function booking($id, $passenger_1)
+    public function booking_1($id, $passenger_id)
     {
       $db = $this->dbConnect();
       $update = $db->prepare('UPDATE way
-        SET Passenger = :passenger, Passenger_1 = :passenger_1
+        SET Passenger_1 = :passenger_id
         WHERE  ID = :id');
         $update->execute(array(
-          'passenger' => 1,
-          'passenger_1' => $passenger_1,
+          'passenger_id' => $passenger_id,
           'id' => $id,
         ));
       }
 
-      public function delete($id)
+      public function booking_2($id, $passenger_id)
       {
         $db = $this->dbConnect();
-        $delete= $db->prepare('DELETE FROM way WHERE ID=?');
-        $delete->execute(array($id));
-      }
-
-      private static $apikey = 'AIzaSyD-kwrdW3ZTGHLRA2k66UeuZHL3F9ySGoU';
-      public function getPoints($address)
-      {
-        //valeurs vide par défaut
-        $data = array('address' => '', 'lat' => '', 'lng' => '', 'city' => '', 'department' => '', 'region' => '', 'country' => '', 'postal_code' => '');
-        //on formate l'adresse
-        $address = str_replace(" ", "+", $address);
-        //on fait l'appel à l'API google map pour géocoder cette adresse
-        $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?key=" . self::$apikey . "&address=$address&sensor=false&region=fr");
-        $json = json_decode($json);
-        //on enregistre les résultats recherchés
-        if ($json->status == 'OK' && count($json->results) > 0) {
-          $res = $json->results[0];
-          //adresse complète et latitude/longitude
-          $data['address'] = $res->formatted_address;
-          $data['lat'] = $res->geometry->location->lat;
-          $data['lng'] = $res->geometry->location->lng;
-          foreach ($res->address_components as $component) {
-            //ville
-            if ($component->types[0] == 'locality') {
-              $data['city'] = $component->long_name;
-            }
-            //départment
-            if ($component->types[0] == 'administrative_area_level_2') {
-              $data['department'] = $component->long_name;
-            }
-            //région
-            if ($component->types[0] == 'administrative_area_level_1') {
-              $data['region'] = $component->long_name;
-            }
-            //pays
-            if ($component->types[0] == 'country') {
-              $data['country'] = $component->long_name;
-            }
-            //code postal
-            if ($component->types[0] == 'postal_code') {
-              $data['postal_code'] = $component->long_name;
-            }
-          }
+        $update = $db->prepare('UPDATE way
+          SET Passenger_2 = :passenger_id
+          WHERE  ID = :id');
+          $update->execute(array(
+            'passenger_id' => $passenger_id,
+            'id' => $id,
+          ));
         }
-        return $data;
-      }
-    }
+
+        public function booking_3($id, $passenger_id)
+        {
+          $db = $this->dbConnect();
+          $update = $db->prepare('UPDATE way
+            SET Passenger_3 = :passenger_id
+            WHERE  ID = :id');
+            $update->execute(array(
+              'passenger_id' => $passenger_id,
+              'id' => $id,
+            ));
+          }
+
+          public function booking_4($id, $passenger_id)
+          {
+            $db = $this->dbConnect();
+            $update = $db->prepare('UPDATE way
+              SET Passenger_4 = :passenger_id
+              WHERE  ID = :id');
+              $update->execute(array(
+                'passenger_id' => $passenger_id,
+                'id' => $id,
+              ));
+            }
+
+            public function booking_5($id, $passenger_id)
+            {
+              $db = $this->dbConnect();
+              $update = $db->prepare('UPDATE way
+                SET Passenger_5 = :passenger_id
+                WHERE  ID = :id');
+                $update->execute(array(
+                  'passenger_id' => $passenger_id,
+                  'id' => $id,
+                ));
+              }
+
+              public function booking_6($id, $passenger_id)
+              {
+                $db = $this->dbConnect();
+                $update = $db->prepare('UPDATE way
+                  SET Passenger_6 = :passenger_id
+                  WHERE  ID = :id');
+                  $update->execute(array(
+                    'passenger_id' => $passenger_id,
+                    'id' => $id,
+                  ));
+                }
+
+                public function delete($id)
+                {
+                  $db = $this->dbConnect();
+                  $delete= $db->prepare('DELETE FROM way WHERE ID=?');
+                  $delete->execute(array($id));
+                }
+
+                private static $apikey = 'AIzaSyD-kwrdW3ZTGHLRA2k66UeuZHL3F9ySGoU';
+                public function getPoints($address)
+                {
+                  //valeurs vide par défaut
+                  $data = array('address' => '', 'lat' => '', 'lng' => '', 'city' => '', 'department' => '', 'region' => '', 'country' => '', 'postal_code' => '');
+                  //on formate l'adresse
+                  $address = str_replace(" ", "+", $address);
+                  //on fait l'appel à l'API google map pour géocoder cette adresse
+                  $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?key=" . self::$apikey . "&address=$address&sensor=false&region=fr");
+                  $json = json_decode($json);
+                  //on enregistre les résultats recherchés
+                  if ($json->status == 'OK' && count($json->results) > 0) {
+                    $res = $json->results[0];
+                    //adresse complète et latitude/longitude
+                    $data['address'] = $res->formatted_address;
+                    $data['lat'] = $res->geometry->location->lat;
+                    $data['lng'] = $res->geometry->location->lng;
+                    foreach ($res->address_components as $component) {
+                      //ville
+                      if ($component->types[0] == 'locality') {
+                        $data['city'] = $component->long_name;
+                      }
+                      //départment
+                      if ($component->types[0] == 'administrative_area_level_2') {
+                        $data['department'] = $component->long_name;
+                      }
+                      //région
+                      if ($component->types[0] == 'administrative_area_level_1') {
+                        $data['region'] = $component->long_name;
+                      }
+                      //pays
+                      if ($component->types[0] == 'country') {
+                        $data['country'] = $component->long_name;
+                      }
+                      //code postal
+                      if ($component->types[0] == 'postal_code') {
+                        $data['postal_code'] = $component->long_name;
+                      }
+                    }
+                  }
+                  return $data;
+                }
+              }

@@ -7,7 +7,7 @@
       <div class="mx-auto col-lg-6 col-10">
         <h1>Propose ton trajet</h1>
         <p class="mb-3">When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees.</p>
-        <form method="post" action="new-way_post" class="text-left">
+        <form method="post" action="index.php?admin=new_way_post" class="text-left">
           <div class="form-group"> <label for="form16">Conducteur</label> <input name ="driver" type="text" class="form-control" id="form16" value="<?= $fullname->name() ?> <?= $fullname->surname() ?>" disabled></div>
           <div class="form-group">
 

@@ -12,6 +12,7 @@
   <!-- CSS dependencies -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="public/flat.css" type="text/css">
+  <!-- script dependencies -->
   <script src="public/scripts/jquery-3.3.1.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDhxa0DF3YywFKNvE9fpKj4kNeDvDnhyD8" type="text/javascript"></script>
   <script src="public/scripts/address.js"></script>
@@ -24,17 +25,17 @@
     <div class="container w-100">
       <div class="row w-100 align-items-center">
         <div class="col-md-1 text-center" style=""><a class="navbar-brand d-none d-md-block"  >
-          <i class="fa d-inline fa-car text-secondary"></i>&nbsp;</a>
+          <a href="welcome" style="font-size:1.3em"><i class="fa d-inline fa-car text-secondary"></i></a>
         </div>
         <div class="col-md-6" style="">
           <h4 class="mb-0">Covoiturage du Pays Flèchois</h4>
         </div>
-        <div class="col-md-4" style="">
+        <div class="col-md-4" style="font-size:0.7em">
           <p class="mb-0 font-italic text-right" id="zone_meteo">
           </p>
         </div>
         <div class="col-md-1" style="">
-          <img id="wicon" src="" alt="Weather icon">
+          <img id="wicon" src="">
         </div>
       </div>
     </div>
@@ -65,7 +66,7 @@
       <div class="container">
         <div class="row w-100">
           <div class="col-md-12">
-            <ul class="nav nav-pills text-center align-items-baseline justify-content-center">
+            <ul class="small nav nav-pills text-center align-items-baseline justify-content-center">
               <li class="nav-item" > <a href="FAQ" class="nav-link">FAQ</a> </li>
               <li class="nav-item"> <a class="nav-link" href="mentions-legales">Mentions légales</a> </li>
               <li class="nav-item"> <a href="CGU" class="nav-link">CGU</a> </li>

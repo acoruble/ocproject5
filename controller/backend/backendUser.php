@@ -9,7 +9,7 @@ class backendUser
   {
     if (!is_string($_POST['email']) || empty($_POST['email']) || (!is_string($_POST['password']) || empty($_POST['password'])) )
     {
-      echo "<div class='alert alert-danger' role='alert'>E-mail ou mot de passe invalide.</div>";
+      echo "<div class='alert alert-danger text-center' role='alert'>E-mail ou mot de passe invalide.</div>";
       require ('view/frontend/account/connection.php');
     }
     else {
@@ -22,7 +22,7 @@ class backendUser
         header('Location: index.php?admin=my_account');
       }
       else {
-        echo "<div class='alert alert-danger' role='alert'>Pseudo ou mot de passe invalide.</div>";
+        echo "<div class='alert alert-danger text-center' role='alert'>Pseudo ou mot de passe invalide.</div>";
         require ('view/frontend/account/connection.php');
       }
     }
@@ -40,7 +40,7 @@ class backendUser
     if (!is_string($_POST['name']) || empty($_POST['name']) || !is_string($_POST['surname']) || empty($_POST['surname']) || !is_string($_POST['email']) || empty($_POST['email']) || !is_string($_POST['password']) ||
     empty($_POST['password']) || ( ($_POST['password']) != ($_POST['password2']) ) )
     {
-      echo "<div class='alert alert-danger' role='alert'>Merci de vérifier vos informations.</div>";
+      echo "<div class='alert alert-danger text-center' role='alert'>Merci de vérifier vos informations.</div>";
       require ('view/frontend/account/registration.php');
     }
     else {

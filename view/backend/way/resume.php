@@ -20,7 +20,7 @@
             <thead>
               <tr class="table-secondary">
                 <th class="text-center"><?= $way->status() ?></th>
-                <th class="text-center">Trajet du 03/03/2019</th>
+                <th class="text-center"><?= date("d-m-Y", strtotime($way->date_way())) ?></th>
               </tr>
             </thead>
             <tbody>
