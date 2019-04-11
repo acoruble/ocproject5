@@ -65,6 +65,10 @@ elseif (isset($_GET['action'])) {
 
 elseif (isset($_GET['admin'])) {
 
+  // if (isset($_SESSION['nom']) && isset($_SESSION['id']) && ($_SESSION['nom'] === 'superadmin')) {
+  //   $backendReview->moderation();
+  // }
+
   if(isset($_SESSION['nom']) && isset($_SESSION['id']))
   {
     if ($_GET['admin'] === 'results') {
@@ -103,6 +107,9 @@ elseif (isset($_GET['admin'])) {
     }
     elseif ($_GET['admin'] === 'review_passenger') {
       $backendReview->review_passenger();
+    }
+    elseif ($_GET['admin'] === 'review_passenger_post') {
+      $backendReview->review_passenger_post();
     }
     elseif ($_GET['admin'] === 'account_management') {
       $backendUser->account_management();

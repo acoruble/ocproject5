@@ -21,7 +21,7 @@
                 <thead>
                   <tr>
                     <th class="text-center text-body">Etat du trajet</th>
-                    <th class="text-center text-body">Trajet<br></th>
+                    <th class="text-center text-body">Date du trajet<br></th>
                   </tr>
                 </thead>
                 <?php foreach ($someWay as $oneWay) {

@@ -80,21 +80,6 @@ class backendWay
     }
   }
 
-  // public function booking()
-  // {
-  //   $way = new Way();
-  //   $way = $way -> getById($_GET['id']);
-  //   $user = new User();
-  //   $passenger = $user -> get($_SESSION['id']);
-  //   if ($way->driver() == $_SESSION['id']) {
-  //     echo "<div class='alert alert-danger text-center' role='alert'>Vous êtes déjà conducteur de ce trajet !.</div>";
-  //     header('Location: index.php');
-  //   }
-  //   else {
-  //     $booking = $way -> booking($_GET['id'], $_SESSION['id']);
-  //     header('Location: index.php?admin=management_way');
-  //   }
-  // }
   public function booking()
   {
     $way = new Way();
@@ -126,7 +111,7 @@ class backendWay
         }
         else {
           while ($x <= 6) {
-            echo "$x";
+            // echo "$x";
             $passenger_x = "passenger_$x";
             // $passenger_x = $way->$passenger_i();
             if ($_SESSION['id'] == $way->$passenger_x()) {
@@ -135,7 +120,7 @@ class backendWay
               break;
             }
             else {
-              echo "c'est ok";
+              // echo "c'est ok";
               $x++;
               $booking_already_exist = 0;
             }
@@ -146,7 +131,7 @@ class backendWay
             echo "<div class='alert alert-danger text-center' role='alert'>Trajet réservé !</div>";
             break;
           } else {
-            echo "<div class='alert alert-danger text-center' role='alert'>Nous avons un problème !</div>";
+            // echo "<div class='alert alert-danger text-center' role='alert'>Nous avons un problème !</div>";
             break;
           }
         }
@@ -154,27 +139,6 @@ class backendWay
       require ('view/frontend/welcome.php');
     }
   }
-
-  // public function check_passenger()
-  // {
-  //   $booking_already_exist = 0;
-  //   $x=1;
-  //   while ($x <= 7) {
-  //     $passenger_x = "passenger_$x";
-  //     // $passenger_x = $way->$passenger_i();
-  //     if ($_SESSION['id'] == $way->$passenger_x()) {
-  //       echo "<div class='alert alert-danger text-center' role='alert'>Vous avez déjà réservé pour ce trajet !</div>";
-  //       $booking_already_exist = 1;
-  //       break;
-  //     }
-  //     else {
-  //       echo "c'est ok";
-  //       $x++;
-  //       $booking_already_exist = 0;
-  //     }
-  //   }
-  //   echo "$booking_already_exist";
-  // }
 
   public function new_way()
   {
@@ -196,10 +160,18 @@ class backendWay
   {
     $way = new Way();
     $fullWays;
-    $listWay1 = $way -> listWay($_SESSION['id']);
-    $listWay2 = $way ->listWayPassenger1($_SESSION['id']);
-    $fullWays = $listWay1 + $listWay2;
+    $listWay0 = $way -> listWay($_SESSION['id']);
+    $listWay1 = $way -> listWayPassenger1($_SESSION['id']);
+    $listWay2 = $way -> listWayPassenger2($_SESSION['id']);
+    $listWay3 = $way -> listWayPassenger3($_SESSION['id']);
+    $listWay4 = $way -> listWayPassenger4($_SESSION['id']);
+    $listWay5 = $way -> listWayPassenger5($_SESSION['id']);
+    $listWay6 = $way -> listWayPassenger6($_SESSION['id']);
+
+    $fullWays = array_merge($listWay0, $listWay1, $listWay2, $listWay3, $listWay4, $listWay5, $listWay6);
+    arsort($fullWays);
     $someWay=[];
+
     foreach ($fullWays as $way) {
       $id = $way->id();
       $status = $way->status();
@@ -256,42 +228,51 @@ class backendWay
       $_booking_or_not = "<div class='col-md-12 p-2'><p class='btn btn-lg btn-info'>Désolé, ce trajet est passé.</p></div>";
     }
     else {
-      $nbpassenger = $way->passenger();
-      $i=1;
-      $nbpassenger = $nbpassenger+1;
-      $booking_already_full = 0;
-      while ($i <= $nbpassenger)
-      {
-        $passenger_i = "passenger_$i";
-        $passenger_i = $way->$passenger_i();
-        if ($i == $nbpassenger) {
-          $booking_already_full = 1;
-          break;
-        }
-        elseif ($passenger_i != null) {
-          $i++;
-          $booking_already_full = 0;
-        }
-    }
+        $nbpassenger = $way->passenger();
+        $i=1;
+        $nbpassenger = $nbpassenger+1;
+        $booking_already_full = 0;
+        while ($i <= $nbpassenger)
+          {
+            $passenger_i = "passenger_$i";
+            // echo "$passenger_i";
+            $passenger_i = $way->$passenger_i();
+            // echo "$i";
+            // echo "$nbpassenger";
+            // echo "$passenger_i";
+              if ($i == $nbpassenger) {
+                $booking_already_full = 1;
+                break;
+                }
+              elseif ($passenger_i != null) {
+                $i++;
+                $booking_already_full = 0;
+                }
+                else {
+                $booking_already_full = 0;
+                // $i++;
+                break;
+                }
+          }
 
-    if ($booking_already_full == 0) {
-      $_booking_or_not = "<div class='col-md-12 p-2'><a class='btn btn-lg btn-info' href='index.php?admin=booking&id=$id_way'>Réserver une place</a></div>";
-    } else {
-      $_booking_or_not = "<div class='col-md-12 p-2'><p class='btn btn-lg btn-info'>Désolé, ce trajet est complet.</p></div>";
-    }
+      if ($booking_already_full == 0) {
+        $_booking_or_not = "<div class='col-md-12 p-2'><a class='btn btn-lg btn-info' href='index.php?admin=booking&id=$id_way'>Réserver une place</a></div>";
+      } else {
+        $_booking_or_not = "<div class='col-md-12 p-2'><p class='btn btn-lg btn-info'>Désolé, ce trajet est complet.</p></div>";
+      }
 
-    if ($way->passenger_1()) {
-      $passenger = $user ->get($way->passenger_1());
-      $passenger_name = $passenger->name();
-      $passenger_surname = $passenger->surname();
+      if ($way->passenger_1()) {
+        $passenger = $user ->get($way->passenger_1());
+        $passenger_name = $passenger->name();
+        $passenger_surname = $passenger->surname();
+      }
+      else {
+        $passenger_name = '';
+        $passenger_surname = '';
+      }
+      require ('view/backend/way/resume.php');
     }
-    else {
-      $passenger_name = '';
-      $passenger_surname = '';
-    }
-    require ('view/backend/way/resume.php');
   }
-}
 
   public function update_way()
   {

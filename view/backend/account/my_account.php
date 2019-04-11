@@ -17,15 +17,19 @@
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-12 shadow">
-            <div class="row">
+            <div class="row text-center">
               <div class="col-md-12 p-1"><a class="btn btn-outline-info float-right" href="my-account-management">Modifier mes informations<br></a></div>
-              <div class="col-md-6 p-1">
-                <h2 class="text-capitalize text-center"><?= $you->name() ?> <?= $you->surname() ?></h2>
+              <!-- <div class="col-md-6 p-1"> -->
+              </div>
+              <div class="row text-center">
+                <div class="col-md-12">
+                  <h2 class="text-capitalize text-center text-secondary"><?= $you->name() ?> <?= $you->surname() ?></h2>
+                </div>
                 <!-- <img class="img-fluid d-block rounded-circle" src="https://static.pingendo.com/img-placeholder-3.svg"> -->
               </div>
-              <div class="col-md-6">
+              <!-- <div class="col-md-6"> -->
                 <h4 class="text-center">Avis :</h4>
-                <div class="row">
+                <div class="row text-center">
                   <div class="col-md-12 p-1">
                     <?php foreach($reviews as $review)
                     { ?>
@@ -35,7 +39,7 @@
                     <?php } ?>
                   </div>
                 </div>
-              </div>
+              <!-- </div> -->
             </div>
           </div>
         </div>

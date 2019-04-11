@@ -4,19 +4,9 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-md-10 p-4">
-      <h1 class="text-center text-body">Comment s'est passé votre trajet ?</h1>
-      <form method="post" action="index.php?admin=review_driver_post&way_id=<?= $way->id() ?>&driver_id=<?= $way->driver() ?>">
-        <div class="form-group">
-          <label for="id_passenger" class="lead text-center text-body">Merci de choisir un compagnon de route :</label>
-          <select class="form-control" name="target">
-            <?php
-            foreach($passengers as $id=>$name)
-            {
-              echo "<option value='$id'>$name</option>";
-            }
-            ?>
-          </select>
-        </div>
+      <h1 class="text-center text-body">Comment s'est passé votre trajet avec <?= $driver->name() ?> <?= $driver->surname() ?> ?</h1>
+      <form method="post" action="index.php?admin=review_passenger_post&way_id=<?= $way->id() ?>&driver_id=<?= $way->driver() ?>">
+        <div class="form-group"> <input name="target" type="hidden" class="form-control" id="form16" value="<?= $driver->id() ?>"></div>
         <div class="form-group">
           <label for="range_review" class="lead text-center text-body">Merci de laisser votre avis :</label>
           <select class="form-control" name="rating">

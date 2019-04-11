@@ -69,6 +69,70 @@ class WayManager extends Manager
     return $ways;
   }
 
+  public function listWayPassenger2($passenger)
+  {
+    $ways=[];
+    $db = $this->dbConnect();
+    $way = $db->prepare('SELECT * FROM way WHERE Passenger_2 = ? ORDER BY Date_way DESC');
+    $way->execute(array($passenger));
+    while($data = $way->fetch())
+    {
+      $ways[] = new way($data);
+    }
+    return $ways;
+  }
+
+  public function listWayPassenger3($passenger)
+  {
+    $ways=[];
+    $db = $this->dbConnect();
+    $way = $db->prepare('SELECT * FROM way WHERE Passenger_3 = ? ORDER BY Date_way DESC');
+    $way->execute(array($passenger));
+    while($data = $way->fetch())
+    {
+      $ways[] = new way($data);
+    }
+    return $ways;
+  }
+
+  public function listWayPassenger4($passenger)
+  {
+    $ways=[];
+    $db = $this->dbConnect();
+    $way = $db->prepare('SELECT * FROM way WHERE Passenger_4 = ? ORDER BY Date_way DESC');
+    $way->execute(array($passenger));
+    while($data = $way->fetch())
+    {
+      $ways[] = new way($data);
+    }
+    return $ways;
+  }
+
+  public function listWayPassenger5($passenger)
+  {
+    $ways=[];
+    $db = $this->dbConnect();
+    $way = $db->prepare('SELECT * FROM way WHERE Passenger_5 = ? ORDER BY Date_way DESC');
+    $way->execute(array($passenger));
+    while($data = $way->fetch())
+    {
+      $ways[] = new way($data);
+    }
+    return $ways;
+  }
+
+  public function listWayPassenger6($passenger)
+  {
+    $ways=[];
+    $db = $this->dbConnect();
+    $way = $db->prepare('SELECT * FROM way WHERE Passenger_6 = ? ORDER BY Date_way DESC');
+    $way->execute(array($passenger));
+    while($data = $way->fetch())
+    {
+      $ways[] = new way($data);
+    }
+    return $ways;
+  }
 
   public function search($date)
   {
