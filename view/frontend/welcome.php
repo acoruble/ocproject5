@@ -1,7 +1,7 @@
 <?php ob_start();
 ?>
 
-<div class="bg-primary text-body p-2" style="	background-image: url(&quot;https://upload.wikimedia.org/wikipedia/commons/a/a1/Le_Loir_at_La_Fleche_1.jpg&quot;);	background-position: left;	background-size: 100%;">
+<div class="bg-primary text-body p-2" style="background-image: url(&quot;https://upload.wikimedia.org/wikipedia/commons/a/a1/Le_Loir_at_La_Fleche_1.jpg&quot;);	background-position: left;	background-size: 100%;">
   <div class="container">
     <div class="row">
       <div class="d-flex flex-column col-md-6 p-2 flex-grow-1 justify-content-start" style=""></div>

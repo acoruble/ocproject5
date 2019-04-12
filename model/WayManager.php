@@ -181,12 +181,12 @@ class WayManager extends Manager
       'date_way' =>$date,
       'time_start' => $time_start,
       'time_arrival' => $time_arrival,
-      'passenger_1' => '',
-      'passenger_2' => '',
-      'passenger_3' => '',
-      'passenger_4' => '',
-      'passenger_5' => '',
-      'passenger_6' => ''
+      'passenger_1' => null,
+      'passenger_2' => null,
+      'passenger_3' => null,
+      'passenger_4' => null,
+      'passenger_5' => null,
+      'passenger_6' => null
     ));
   }
 

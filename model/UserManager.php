@@ -50,7 +50,7 @@ class UserManager extends Manager
       'Email' => $email,
     ));
   }
-  
+
   public function get($id)
   {
     $db = $this->dbConnect();
@@ -77,5 +77,4 @@ class UserManager extends Manager
     $delete= $db->prepare('DELETE FROM people WHERE ID=?');
     $delete->execute(array($id));
   }
-
 }

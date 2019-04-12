@@ -74,6 +74,7 @@
               <li class="nav-item"> <a href="CGU" class="nav-link">CGU</a> </li>
               <li class="nav-item"> <a href="contact" class="nav-link">Contact</a> </li>
               <li class="nav-item"> <a href="qui-suis-je" class="nav-link">Qui suis-je ?</a> </li>
+              <li class="nav-item"> <a href="moderation" class="nav-link">Administration</a> </li>
             </ul>
           </div>
         </div>

@@ -3,8 +3,7 @@
 class User extends UserManager
 {
 
-  protected $errors = [],
-            $id,
+  protected $id,
             $name,
             $surname,
             $password,
@@ -36,50 +35,22 @@ class User extends UserManager
 
   public function setName($name)
   {
-    if (!is_string($name) || empty($name))
-    {
-      $this->errors[] = self::content_INVALID;
-    }
-    else
-    {
       $this->name = $name;
-    }
   }
 
   public function setSurname($surname)
   {
-    if (!is_string($surname) || empty($surname))
-    {
-      $this->errors[] = self::content_INVALID;
-    }
-    else
-    {
       $this->surname = $surname;
-    }
   }
 
   public function setPassword($password)
   {
-    if (!is_string($password) || empty($password))
-    {
-      $this->errors[] = self::content_INVALID;
-    }
-    else
-    {
       $this->password = $password;
-    }
   }
 
   public function setEmail($email)
   {
-    if (!is_string($email) || empty($email))
-    {
-      $this->errors[] = self::content_INVALID;
-    }
-    else
-    {
       $this->email = $email;
-    }
   }
 
   public function id()

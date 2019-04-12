@@ -67,7 +67,7 @@ class Way extends WayManager
 
   public function setPassenger($passenger)
   {
-    $this->passenger = $passenger;
+    $this->passenger = (int) $passenger;
   }
 
   public function setCar($car)
@@ -92,32 +92,32 @@ class Way extends WayManager
 
   public function setPassenger_1($passenger_1)
   {
-    $this->passenger_1 = $passenger_1;
+    $this->passenger_1 = (int) $passenger_1;
   }
 
   public function setPassenger_2($passenger_2)
   {
-    $this->passenger_2 = $passenger_2;
+    $this->passenger_2 = (int) $passenger_2;
   }
 
   public function setPassenger_3($passenger_3)
   {
-    $this->passenger_3 = $passenger_3;
+    $this->passenger_3 = (int) $passenger_3;
   }
 
   public function setPassenger_4($passenger_4)
   {
-    $this->passenger_4 = $passenger_4;
+    $this->passenger_4 = (int) $passenger_4;
   }
 
   public function setPassenger_5($passenger_5)
   {
-    $this->passenger_5 = $passenger_5;
+    $this->passenger_5 = (int) $passenger_5;
   }
 
   public function setPassenger_6($passenger_6)
   {
-    $this->passenger_6 = $passenger_6;
+    $this->passenger_6 = (int) $passenger_6;
   }
 
   public function id()

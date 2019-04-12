@@ -4,6 +4,7 @@ class Review extends ReviewManager
 {
 
   protected $id,
+  $status,
   $author,
   $way_id,
   $target,
@@ -35,6 +36,11 @@ class Review extends ReviewManager
     $this->id = (int) $id;
   }
 
+  public function setStatus($status)
+  {
+    $this->status = $status;
+  }
+
   public function setAuthor($author)
   {
     $this->author = $author;
@@ -64,6 +70,11 @@ class Review extends ReviewManager
   public function id()
   {
     return $this->id;
+  }
+
+  public function status()
+  {
+    return $this->status;
   }
 
   public function author()

@@ -65,10 +65,6 @@ elseif (isset($_GET['action'])) {
 
 elseif (isset($_GET['admin'])) {
 
-  // if (isset($_SESSION['nom']) && isset($_SESSION['id']) && ($_SESSION['nom'] === 'superadmin')) {
-  //   $backendReview->moderation();
-  // }
-
   if(isset($_SESSION['nom']) && isset($_SESSION['id']))
   {
     if ($_GET['admin'] === 'results') {
@@ -119,6 +115,18 @@ elseif (isset($_GET['admin'])) {
     }
     elseif ($_GET['admin'] === 'my_account') {
       $backendUser->my_account();
+    }
+    elseif (($_GET['admin'] === 'moderation') && ($_SESSION['nom'] === 'superadmin')) {
+      $backendReview->moderation();
+    }
+    elseif (($_GET['admin'] === 'moderation') && ($_SESSION['nom'] != 'superadmin')) {
+      $frontend->home();
+    }
+    elseif ($_GET['admin'] === 'validation') {
+      $backendReview->validation();
+    }
+    elseif ($_GET['admin'] === 'delete') {
+      $backendReview->delete();
     }
     elseif ($_GET['admin'] === 'log_out') {
       $backendUser->log_out();
