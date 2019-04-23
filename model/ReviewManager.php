@@ -27,14 +27,14 @@ class ReviewManager extends Manager
     ));
   }
 
-  //
-  // public function getFirstReview()
-  // {
-  //   $db = $this->dbConnect();
-  //   $firstReview = $db->query('SELECT ID, title, content FROM review ORDER BY ID');
-  //   $data = $firstReview->fetch();
-  //   return new Review($data);
-  // }
+  public function get($id)
+  {
+    $db = $this->dbConnect();
+    $review = $db->prepare('SELECT * FROM review WHERE ID=?');
+    $review->execute(array($id));
+    $data =  $review->fetch();
+    return new Review($data);
+  }
 
   public function getReview($id_target)
   {
@@ -64,16 +64,6 @@ class ReviewManager extends Manager
     }
     return $review;
   }
-
-  // public function update($id, $title, $content) {
-  //   $db = $this->dbConnect();
-  //   $update = $db->prepare('UPDATE review SET content = :content, title = :title WHERE ID=:id');
-  //   $update->execute(array(
-  //     'id' => $id,
-  //     'title' => $title,
-  //     'content' => $content,
-  //   ));
-  // }
 
   public function validation($id) {
     $status = "Validé";

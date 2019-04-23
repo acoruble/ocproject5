@@ -2,9 +2,9 @@
   ?>
 
 <div class="py-5 text-center h-100" style="">
-  <div class="container">
-    <div class="row">
-      <div class="mx-auto col-md-6 col-10 bg-white p-5">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="mx-auto col-lg-4 rounded bg-light shadow p-4">
         <h1 class="mb-4">Connexion</h1>
         <form method="post" action="index.php?action=session">
           <div class="form-group"> <input name ="email" type="email" class="form-control" placeholder="E-mail" id="form9"> </div>
@@ -12,7 +12,7 @@
               <a href="index.php?action=password_forgotten"> Recover password</a>
             </small> </div> <button type="submit" class="btn btn-secondary">Se connecter</button>
         </form>
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-md-12"><a class="btn btn-primary" href="index.php?action=password_forgotten">Mot de passe oublié ?</a></div>
         </div>
       </div>

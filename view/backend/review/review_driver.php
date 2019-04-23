@@ -1,9 +1,9 @@
 <?php ob_start();
 ?>
 
-<div class="container">
-  <div class="row">
-    <div class="mx-auto col-md-10 p-4">
+<div class="container-fluid py-3">
+  <div class="row justify-content-center">
+    <div class="bg-primary rounded mx-auto col-md-6 p-2">
       <h1 class="text-center text-body">Comment s'est passé votre trajet ?</h1>
       <form method="post" action="index.php?admin=review_driver_post&way_id=<?= $way->id() ?>&driver_id=<?= $way->driver() ?>">
         <div class="form-group">

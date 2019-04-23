@@ -40,15 +40,15 @@ class UserManager extends Manager
 
   public function create($name,$surname,$password,$email)
   {
-    $pass_hache = password_hash($password, PASSWORD_DEFAULT);
     $db = $this->dbConnect();
-    $createUser = $db->prepare('INSERT INTO people(Name, Surname, Password, Email) VALUES(:Name, :Surname, :Password, :Email)');
+    $createUser = $db->prepare('INSERT INTO people(Name, Surname, Password, Email, Average) VALUES(:Name, :Surname, :Password, :Email, :Average)');
     $createUser -> execute(array(
       'Name' => $name,
       'Surname' => $surname,
       'Password' => $pass_hache,
       'Email' => $email,
-    ));
+      'Average' => null,
+        ));
   }
 
   public function get($id)
@@ -60,15 +60,25 @@ class UserManager extends Manager
     return new User($data);
   }
 
-  public function update($id,$name,$surname,$password,$email) {
+  public function update($id,$name,$surname,$password,$email,$average) {
     $db = $this->dbConnect();
-    $update = $db->prepare('UPDATE people SET Name = :Name, Surname = :Surname, Password = :Password, Email = :Email WHERE ID = :id');
+    $update = $db->prepare('UPDATE people SET Name = :Name, Surname = :Surname, Password = :Password, Email = :Email, Average = :Average WHERE ID = :id');
     $update->execute(array(
       'Name' => $name,
       'Surname' => $surname,
       'Password' => $password,
       'Email' => $email,
       'id' => $id,
+      'Average'=>$average,
+    ));
+  }
+
+  public function update_average($id,$average) {
+    $db = $this->dbConnect();
+    $update = $db->prepare('UPDATE people SET Average = :Average WHERE ID = :id');
+    $update->execute(array(
+      'id' => $id,
+      'Average'=>$average,
     ));
   }
 
@@ -77,4 +87,5 @@ class UserManager extends Manager
     $delete= $db->prepare('DELETE FROM people WHERE ID=?');
     $delete->execute(array($id));
   }
+
 }

@@ -45,8 +45,16 @@ class backendUser
     }
     else {
       $user = new User();
-      $user->update($_SESSION['id'],$_POST['name'],$_POST['surname'],$_POST['password'],$_POST['email']);
-      // header('Location: index.php?admin=my_account');
+      $average = $user->average();
+
+      $id = htmlspecialchars($_SESSION['id']);
+      $name = htmlspecialchars($_POST['name']);
+      $surname = htmlspecialchars($_POST['surname']);
+      $password = htmlspecialchars($_POST['password']);
+      $password_hash = password_hash($password, PASSWORD_DEFAULT);
+      $email = htmlspecialchars($_POST['email']);
+      $user->update($id,$name,$surname,$password_hash,$email,$average);
+      header('Location: index.php?admin=my_account');
     }
   }
 
@@ -56,6 +64,23 @@ class backendUser
     $you = $user->get($_SESSION['id']);
     $review = new Review();
     $reviews = $review->getReview($_SESSION['id']);
+    $average = $you->average();
+    if ($average === null) {
+      $average = "Pas encore d'avis reçu ! </br>";
+    }
+    require ('view/backend/account/my_account.php');
+  }
+
+  public function other_account()
+  {
+    $user = new User();
+    $you = $user->get($_GET['id']);
+    $review = new Review();
+    $reviews = $review->getReview($_GET['id']);
+    $average = $you->average();
+    if ($average === null) {
+      $average = "Pas encore d'avis reçu ! </br>";
+    }
     require ('view/backend/account/my_account.php');
   }
 

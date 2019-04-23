@@ -9,17 +9,14 @@ class backendWay
   {
     $way = new Way();
     $ways = $way -> getAll();
-
     foreach ($ways as $way) {
       $date_day = strval($way->date_way());
       $date_hour = strval($way->time_start());
       $date_test = "$date_day $date_hour";
       $tz = new DateTimeZone('Europe/Paris');
       $date_test = new DateTime($date_test, $tz);
-
       date_default_timezone_set('Europe/Paris');
       $date_limit = new DateTime('');
-
       if ( $date_test < $date_limit)
       {
         $id = $way->id();
@@ -38,11 +35,9 @@ class backendWay
         $passenger_4 = $way->passenger_4();
         $passenger_5 = $way->passenger_5();
         $passenger_6 = $way->passenger_6();
-
-        $test = $way -> update($id, $status, $driver, $passenger, $starting_point,
+        $way -> update($id, $status, $driver, $passenger, $starting_point,
         $destination,$car,$date,$time_start,$time_arrival,
         $passenger_1, $passenger_2, $passenger_3, $passenger_4, $passenger_5, $passenger_6 );
-
       }
     }
   }
@@ -57,25 +52,6 @@ class backendWay
       require ('view/frontend/welcome.php');
     }
     else {
-      // // Pour le premier trajet et sa distance de point de départ
-      // $ad1 = $ways[0]->starting_point();
-      // $address1 = $way-> getPoints($ad1);
-      // $ad2 = $_POST['starting_point'];
-      // $address2 = $way-> getPoints($ad2);
-      // // Puis calcul de la distance entre les deux points
-      // $result1 = $way-> distance($address1['lat'], $address1['lng'], $address2['lat'], $address2['lng']);
-      //
-      // $ad3 = $ways[0]->destination();
-      // $address3 = $way-> getPoints($ad3);
-      // $ad4 = $_POST['destination'];
-      // $address4 = $way-> getPoints($ad4);
-      // // Puis calcul de la distance entre les deux points
-      // $result2 = $way-> distance($address3['lat'], $address3['lng'], $address4['lat'], $address4['lng']);
-      // $final_result = $result1 + $result2;
-      // // Faire cela pour chaque trajet
-      // // Les enregistrer dans un tableau de résultat
-      // // Les afficher par distance en km croissante
-      // // <!> AFFICHER SEULEMENT LES TRAJETS EN COURS ?!?
       require ('view/backend/way/results.php');
     }
   }
@@ -111,16 +87,13 @@ class backendWay
         }
         else {
           while ($x <= 6) {
-            // echo "$x";
             $passenger_x = "passenger_$x";
-            // $passenger_x = $way->$passenger_i();
             if ($_SESSION['id'] == $way->$passenger_x()) {
               echo "<div class='alert alert-danger text-center' role='alert'>Vous avez déjà réservé pour ce trajet !</div>";
               $booking_already_exist = 1;
               break;
             }
             else {
-              // echo "c'est ok";
               $x++;
               $booking_already_exist = 0;
             }
@@ -131,7 +104,6 @@ class backendWay
             echo "<div class='alert alert-danger text-center' role='alert'>Trajet réservé !</div>";
             break;
           } else {
-            // echo "<div class='alert alert-danger text-center' role='alert'>Nous avons un problème !</div>";
             break;
           }
         }
@@ -246,7 +218,6 @@ class backendWay
         }
         else {
           $booking_already_full = 0;
-          // $i++;
           break;
         }
       }
@@ -265,31 +236,20 @@ class backendWay
     {
       $passenger_i = "passenger_$i";
       $passenger_i = $way->$passenger_i();
-      var_dump($passenger_i);
-      var_dump($i);
       if ($passenger_i === 0) {
         break;
       }
       else {
-        /// a terminer !
-        $passenger = $user ->get($way->$passenger_i());
-        $passenger_name = $passenger->name();
-        $passenger_surname = $passenger->surname();
+        $passenger = $user ->get($passenger_i);
+        $passenger_id = $passenger -> id();
+        $passenger_name = $passenger -> name();
+        $passenger_infos = "<a class='text-secondary' href='index.php?admin=other_account&id=$passenger_id'>$passenger_name</a></br>";
+        array_push($allpassengers,$passenger_infos);
         $i++;
       }
     }
     require ('view/backend/way/resume.php');
   }
-
-          // if ($way->passenger_1()) {
-          //   $passenger = $user ->get($way->passenger_1());
-          //   $passenger_name = $passenger->name();
-          //   $passenger_surname = $passenger->surname();
-          // }
-          // else {
-          //   $passenger_name = '';
-          //   $passenger_surname = '';
-          // }
 
   public function update_way()
   {

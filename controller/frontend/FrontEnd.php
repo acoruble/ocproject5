@@ -8,11 +8,6 @@ class frontend
 
   public function home()
   {
-    // $reviews = new Reviews();
-    // $comments = new Comments();
-    // $listReviews = $reviews->getListReviews();
-    // $review = $reviews->getFirstReview();
-    // $comments = $comments->getComments($review->title());
     require ('view/frontend/welcome.php');
   }
 
@@ -33,7 +28,12 @@ class frontend
       $user = new User();
       $correct = $user->checkEmail($_POST['email']);
       if (!$correct) {
-        $user->create(htmlspecialchars($_POST['name']), ($_POST['surname']), ($_POST['password']), ($_POST['email']));
+        $name = htmlspecialchars($_POST['name']);
+        $surname = htmlspecialchars($_POST['surname']);
+        $password = htmlspecialchars($_POST['password']);
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $email = htmlspecialchars($_POST['email']);
+        $user->create($name,$surname,$password,$email);
         header('Location: index.php');
       }
       else {
@@ -73,48 +73,4 @@ class frontend
     require ('view/frontend/other/qui_suis_je.php');
   }
 
-
-
-  // public function newcomment()
-  // {
-  //   if (!is_string($_POST['pseudo']) || empty($_POST['pseudo']) || !is_string($_POST['message']) || empty($_POST['message']))
-  //   {
-  //     echo "<div class='alert alert-danger text-center' role='alert'>Merci de vérifier votre pseudo ou votre message.</div>";
-  //     header('Location: index.phps');
-  //   }
-  //   else {
-  //     $reviews = new Reviews();
-  //     $comments = new Comments();
-  //     $correct = $reviews-> existReview($_POST['ReviewClick']);
-  //     if (!$correct)
-  //     {
-  //       echo "<div class='alert alert-danger text-center' role='alert'>Merci de vérifier votre pseudo ou votre message.</div>";
-  //       require ('view/frontend/chapterdisplay.php');
-  //     }
-  //     else {
-  //       $comments->addcomments(htmlspecialchars($_POST['titleChapter']),htmlspecialchars($_POST['pseudo']),htmlspecialchars($_POST['message']));
-  //     }
-  //   }
-  // }
-  //
-  // public function notifyComments()
-  // {
-  //   $comments = new Comments();
-  //   $correct = $comments-> existComment($_POST['IDComment']);
-  //   if (!$correct)
-  //   {
-  //     echo "<div class='alert alert-danger text-center' role='alert'>Nous avons un problème, merci de recommencer votre signalement.</div>";
-  //     require ('view/frontend/chapterdisplay.php');
-  //   }
-  //   else
-  //   {
-  //     $displayReport = $comments->displayreportcomment($_POST['IDComment']);
-  //     $comments->updatereportcomment($displayReport, $_POST['IDComment']);
-  //   }
-  // }
-  //
-  // public function connection()
-  // {
-  //   require ('view/frontend/connection.php');
-  // }
 }

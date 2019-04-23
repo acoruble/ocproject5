@@ -1,11 +1,10 @@
 <?php ob_start();
 ?>
 
-<div class="bg-primary text-body p-2" style="background-image: url(&quot;https://upload.wikimedia.org/wikipedia/commons/a/a1/Le_Loir_at_La_Fleche_1.jpg&quot;);	background-position: left;	background-size: 100%;">
-  <div class="container">
-    <div class="row">
+  <div class="py-2 container-fluid">
+    <div class="row justify-content-center">
       <div class="d-flex flex-column col-md-6 p-2 flex-grow-1 justify-content-start" style=""></div>
-      <div class="text-body col-md-6 p-4 shadow bg-light rounded" style="">
+      <div class="text-body col-md-4 p-4 shadow bg-light rounded" style="">
         <h3 class="mb-3 text-body">Rechercher un trajet</h3>
         <form action="index.php?admin=results" method="post">
           <div class="form-group">
@@ -51,17 +50,17 @@
               <input id="locality" name="locality" disabled>
             </div>
           </div>
-          <div class="form-group"> <label>Date de départ</label> <input name="date" type="date" class="form-control" placeholder="2" required="required"> </div>
+          <div class="form-group"> <label>Date de départ</label> <input name="date" type="date" class="form-control" required="required"> </div>
           <button type="submit" class="btn mt-4 btn-block p-2 btn-outline-secondary"><b>Rechercher votre trajet</b></button>
         </form>
       </div>
     </div>
   </div>
-</div>
+
 <div class="py-4 text-center" style="">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4" style="">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-3 col-md-2" style="">
         <div class="card shadow">
           <div class="card-body p-4">
             <i class="fa fa-5x fa-handshake"></i>
@@ -70,7 +69,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6" style="">
+      <div class="col-lg-3 col-md-2" style="">
         <div class="card shadow">
           <div class="card-body p-4">
             <i class="fa fa-leaf fa-5x"></i>
@@ -79,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6" style="">
+      <div class="col-lg-3 col-md-2" style="">
         <div class="card shadow">
           <div class="card-body p-4"> <i class="fa fa-5x fa-universal-access" style=""></i>
             <h2 class="text-secondary">Pratique</h2>

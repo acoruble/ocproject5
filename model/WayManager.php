@@ -200,7 +200,7 @@ class WayManager extends Manager
       Passenger_1 = :passenger_1, Passenger_2 = :passenger_2, Passenger_3 = :passenger_3,
       Passenger_4 = :passenger_4, Passenger_5 = :passenger_5, Passenger_6 = :passenger_6
       WHERE  ID = :id');
-      $update->execute(array(
+      $test = $update->execute(array(
         'status' => $status,
         'driver' => $driver,
         'passenger' => $passenger,

@@ -153,6 +153,18 @@ class backendReview
   {
     $review = new Review();
     $review -> validation($_GET['id']);
+    $review = $review -> get($_GET['id']);
+    $new_range = $review -> rating();
+    $user = new User();
+    $user = $user -> get($review ->target());
+    $old_average = $user -> average();
+    if ($old_average === null) {
+      $new_average = $new_range;
+    }
+    else {
+      $new_average = ($old_average + $new_range)/2;
+    }
+    $user-> update_average($review ->target(),$new_average);
     echo "<div class='alert alert-danger text-center' role='alert'>Commentaire bien validé :)</div>";
     header('Location: moderation');
   }

@@ -1,19 +1,19 @@
 <?php ob_start();
   ?>
 
-  <div class="bg-primary text-body py-2">
-  <div class="container">
-    <div class="row">
-      <div class="d-flex flex-column justify-content-center col-md-12 shadow p-3">
+  <div class="text-body py-2">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="bg-primary rounded d-flex flex-column justify-content-center col-md-8 shadow p-3">
         <h3 class="display-4 mb-3 text-center">Bonjour <?= $_SESSION['nom'] ?>, bienvenue dans votre espace de modifications des trajets.</h3>
       </div>
     </div>
   </div>
 </div>
 <div class="py-2 text-center" >
-  <div class="container">
-    <div class="row shadow">
-      <div class="mx-auto col-lg-6 col-10 py-2">
+  <div class="container-fluid">
+    <div class="row justify-content-center shadow">
+      <div class="bg-primary rounded shadow mx-auto col-md-6 col-10 py-2">
         <h1>Trajet du 14/01/2019</h1>
         <form method="post" action="index.php?admin=update_way_post&id=<?= $way->id() ?>" class="text-left">
           <div class="form-group"> <label for="form16">Conducteur</label> <input name="driver" type="text" class="form-control" id="form16" value="<?= $driver->name() ?> <?= $driver->surname() ?>" disabled=""></div>

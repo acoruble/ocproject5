@@ -1,9 +1,9 @@
 <?php ob_start();
 ?>
 
-<div class="py-2 text-center" style="background-image: url(&quot;https://upload.wikimedia.org/wikipedia/commons/a/a1/Le_Loir_at_La_Fleche_1.jpg&quot;);	background-position: left;	background-size: 100%;">
-  <div class="container">
-    <div class="row">
+<div class="py-2 text-center" style="background-image: url('public/Le_Loir_a_La_Fleche.jpg');	background-position: left;	background-size: 100%;">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
       <div class="mx-auto col-lg-6 col-10 shadow p-3 bg-light rounded">
         <h1>Propose ton trajet</h1>
         <p class="mb-3">When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees.</p>

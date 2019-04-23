@@ -4,10 +4,11 @@ class User extends UserManager
 {
 
   protected $id,
-            $name,
-            $surname,
-            $password,
-            $email;
+  $name,
+  $surname,
+  $password,
+  $email,
+  $average;
 
   public function __construct(array $data = null)
   {
@@ -35,22 +36,27 @@ class User extends UserManager
 
   public function setName($name)
   {
-      $this->name = $name;
+    $this->name = $name;
   }
 
   public function setSurname($surname)
   {
-      $this->surname = $surname;
+    $this->surname = $surname;
   }
 
   public function setPassword($password)
   {
-      $this->password = $password;
+    $this->password = $password;
   }
 
   public function setEmail($email)
   {
-      $this->email = $email;
+    $this->email = $email;
+  }
+
+  public function setAverage($average)
+  {
+    $this->average = $average;
   }
 
   public function id()
@@ -76,6 +82,11 @@ class User extends UserManager
   public function email()
   {
     return $this->email;
+  }
+
+  public function average()
+  {
+    return $this->average;
   }
 
 }

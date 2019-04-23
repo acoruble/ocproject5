@@ -10,7 +10,7 @@ require('model/User.php');
 require('controller/frontend/FrontEnd.php');
 require('controller/backend/backendReview.php');
 require('controller/backend/backendUser.php');
-require('controller/backend/backendway.php');
+require('controller/backend/backendWay.php');
 
 $frontend = new FrontEnd();
 $backendReview = new backendReview();
@@ -127,6 +127,9 @@ elseif (isset($_GET['admin'])) {
     }
     elseif ($_GET['admin'] === 'delete') {
       $backendReview->delete();
+    }
+    elseif ($_GET['admin'] === 'other_account') {
+      $backendUser->other_account();
     }
     elseif ($_GET['admin'] === 'log_out') {
       $backendUser->log_out();

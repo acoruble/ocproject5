@@ -14,75 +14,73 @@
   <link rel="stylesheet" href="public/flat.css" type="text/css">
   <!-- script dependencies -->
   <script src="public/scripts/jquery-3.3.1.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDhxa0DF3YywFKNvE9fpKj4kNeDvDnhyD8" type="text/javascript"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDhxa0DF3YywFKNvE9fpKj4kNeDvDnhyD8"></script>
   <script src="public/scripts/address.js"></script>
   <script src="public/scripts/address2.js"></script>
   <script src="public/scripts/weather.js"></script>
 </head>
 
 <body>
-  <div class="bg-light text-secondary">
-    <div class="container w-100">
-      <div class="row w-100 align-items-center">
-        <div class="col-md-1 text-center" style=""><a class="navbar-brand d-none d-md-block"  >
-          <a href="welcome" style="font-size:1.3em"><i class="fa d-inline fa-car text-secondary"></i></a>
+  <div class="bg-light text-secondary px-5">
+    <div class="container-fluid w-100">
+      <div class="flex-row justify-content-around row mb-0 text-center align-items-center">
+        <div>
+          <h6 class="mx-auto mb-0">Covoiturage du Pays Flèchois</h6>
         </div>
-        <div class="col-md-6" style="">
-          <h4 class="mb-0">Covoiturage du Pays Flèchois</h4>
+        <div class="font-italic mx-auto" id="zone_meteo" style="font-size:0.7em">
         </div>
-        <div class="col-md-4" style="font-size:0.7em">
-          <p class="mb-0 font-italic text-right" id="zone_meteo">
-          </p>
-        </div>
-        <div class="col-md-1" style="">
-          <img id="wicon" src="">
+        <div>
+          <img id="wicon">
         </div>
       </div>
     </div>
   </div>
 
-    <nav style="" class="navbar navbar-expand-lg navbar-dark bg-secondary shadow sticky-top">
-      <div class="container">
-        <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" style="">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse">
-        </div>
+  <nav style="" class="navbar navbar-expand-lg navbar-dark bg-secondary shadow sticky-top px-5">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.php" style="font-size:1.3em"><i class="fa d-inline fa-car text-light"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item"><a class="nav-link" href="management-way">Gérer vos trajets</a></li>
-          <li class="nav-item"> <a class="nav-link" href="welcome" >Rechercher un trajet</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="new-way">Proposer un trajet</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="index.php" >Rechercher un trajet</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?admin=new_way">Proposer un trajet</a> </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item"> <a class="nav-link" href="my-account">Gérer votre compte</a> </li>
-          <li class="nav-item"> <a class="nav-link text-primary" href="log-out">Vous déconnecter</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?admin=my_account">Gérer votre compte</a> </li>
+          <li class="nav-item"> <a class="nav-link text-primary" href="index.php?admin=log_out">Vous déconnecter</a> </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <?= $content ?>
+  <div class="bgimg">
+  <!-- style="background-image: url('public/Le_Loir_a_La_Fleche.jpg');	background-position: left;	background-size: 100%; background-repeat: no-repeat; background-size: cover;"> -->
+    <?= $content ?>
+  </div>
 
   <footer class="footer">
     <div class="text-body bg-secondary">
-      <div class="container">
-        <div class="row w-100">
+      <div class="container-fluid">
+        <div class="row justify-content-center w-100">
           <div class="col-md-12">
             <ul class="small nav nav-pills text-center align-items-baseline justify-content-center">
-              <li class="nav-item" > <a href="FAQ" class="nav-link">FAQ</a> </li>
-              <li class="nav-item"> <a class="nav-link" href="mentions-legales">Mentions légales</a> </li>
-              <li class="nav-item"> <a href="CGU" class="nav-link">CGU</a> </li>
-              <li class="nav-item"> <a href="contact" class="nav-link">Contact</a> </li>
-              <li class="nav-item"> <a href="qui-suis-je" class="nav-link">Qui suis-je ?</a> </li>
-              <li class="nav-item"> <a href="moderation" class="nav-link">Administration</a> </li>
+              <li class="nav-item" > <a href="index.php?action=FAQ" class="nav-link">FAQ</a> </li>
+              <li class="nav-item"> <a class="nav-link" href="index.php?action=mentions_legales">Mentions légales</a> </li>
+              <li class="nav-item"> <a href="index.php?action=CGU" class="nav-link">CGU</a> </li>
+              <li class="nav-item"> <a href="index.php?action=contact" class="nav-link">Contact</a> </li>
+              <li class="nav-item"> <a href="index.php?action=qui_suis_je" class="nav-link">Qui suis-je ?</a> </li>
+              <li class="nav-item"> <a href="index.php?admin=moderation" class="nav-link">Administration</a> </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <div class="text-body bg-secondary">
-      <div class="container">
-        <div class="row">
+      <div class="container-fluid">
+        <div class="row justify-content-center">
           <div class="col-md-12 text-center">
             <p class="small lead w-100 text-capitalize text-muted">© 2018 Coruble Anne-Lise. Openclassroom Projet 5</p>
           </div>

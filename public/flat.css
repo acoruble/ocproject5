@@ -46,6 +46,24 @@
 *::after {
   box-sizing: border-box; }
 
+@media (min-width: 600px) {
+.bgimg {
+          background-image: url('Le_Loir_a_La_Fleche.jpg');
+          background-position: left;
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+      }
+    }
+
+@media (max-width: 599px) {
+
+        .bgimg {
+              background-image: none;
+        }
+
+      }
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
