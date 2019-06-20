@@ -1,4 +1,8 @@
 <?php
+
+// Ceci est un essai
+// Et oui !
+
 session_start();
 require('model/Manager.php');
 require('model/ReviewManager.php');
@@ -136,40 +140,6 @@ elseif (isset($_GET['admin'])) {
       $frontend->home();
     }
 
-
-
-
-
-//     elseif ($_GET['admin'] === 'createreview') {
-//       $backend->create();
-//     }
-//
-//     elseif ($_GET['admin'] === 'updatereview') {
-//       $backend->update();
-//     }
-//     elseif ($_GET['admin'] === 'postupdate') {
-//       $backend->postupdate();
-//       $backend->board();
-//     }
-//
-//     elseif ($_GET['admin'] === 'deletereview') {
-//       $backend->delete();
-//       $backend->board();
-//     }
-//
-//     elseif ($_GET['admin'] === 'controlcomments') {
-//       $backend->control();
-//     }
-//
-//     elseif ($_GET['admin'] === 'deletecomment') {
-//       $backend->deletecomment();
-//       $backend->board();
-//     }
-//
-//     elseif ($_GET['admin'] === 'logout') {
-//       $backend->logout();
-//       $frontend->home();
-//     }
   }
   else {
     echo "<div class='alert alert-danger text-center' role='alert'>Merci de vous connecter.</div>";
