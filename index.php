@@ -4,7 +4,7 @@
 // Et oui !
 
 session_start();
-require('model/Manager.php');
+//require('model/Manager.php');
 require('model/ReviewManager.php');
 require('model/WayManager.php');
 require('model/UserManager.php');
